@@ -13,9 +13,10 @@ public class Player : MonoBehaviour
     public PlayerInput input;
     public enum IState
     {
-        Defelct,
+        Grab,
+        Deflect,
         Invincible,
-        Fragile
+        Fragile,
     }
 
     [Header("Stats")]
@@ -43,11 +44,18 @@ public class Player : MonoBehaviour
     public LayerMask level;
 
     [Header("Deflect")]
-    public GameObject deflectBox;
+    public GameObject deflectBoxPrefab;
     public float deflectDuration;
     public Timer deflectTimer;
     public float deflectHitboxOffsetX;
     public float deflectHitboxOffsetY;
+
+    [Header("Grab")]
+    public GameObject grabBoxPrefab;
+    public float grabDuration;
+    public Timer grabTimer;
+    public float grabHitboxOffsetX;
+    public float grabHitboxOffsetY;
 
     [Header("Roll")]
     public float rollSpeed;
@@ -74,7 +82,6 @@ public class Player : MonoBehaviour
     [Header("Components")]
     // public Animator anim;
     public Rigidbody2D rb { get; private set; }
-    public GameObject deflectBoxPrefab;
     #endregion
 
     #region Controllers
@@ -89,6 +96,7 @@ public class Player : MonoBehaviour
     public RollController RollCtrl { get; private set; }
     public WallMovementController WallMovementCtrl { get; private set; }
     public DeflectController DeflectCtrl { get; private set; }
+    public GrabController GrabCtrl { get; private set; }
     #endregion
 
     #region States
@@ -103,6 +111,7 @@ public class Player : MonoBehaviour
     public PlayerState dashState { get; private set; }
     public PlayerState onDamageState { get; private set; }
     public PlayerState deflectState { get; private set; }
+    public PlayerState grabState { get; private set; }
     #endregion
 
     private void Awake()
@@ -121,6 +130,7 @@ public class Player : MonoBehaviour
         RollCtrl = new RollController(this);
         WallMovementCtrl = new WallMovementController(this);
         DeflectCtrl = new DeflectController(this);
+        GrabCtrl = new GrabController(this);
 
 
         stateMachine = new PlayerStateMachine();
@@ -133,6 +143,7 @@ public class Player : MonoBehaviour
         wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
         wallJumpState = new PlayerWallJumpState(this, stateMachine, "wallJump");
         deflectState = new PlayerDeflectState(this, stateMachine, "Deflect");
+        grabState = new PlayerGrabState(this, stateMachine, "Grab");
         //onDamageState = new PlayerOnDamageState(this, stateMachine, "OnDamage");
 
     }
@@ -197,7 +208,7 @@ public class Player : MonoBehaviour
             case IState.Fragile:
                 playerPrototypeSprite.color = Color.gray;
                 break;
-            case IState.Defelct:
+            case IState.Deflect:
                 playerPrototypeSprite.color = Color.blue;
                 break;
             case IState.Invincible:
@@ -216,14 +227,19 @@ public class Player : MonoBehaviour
 
         switch (iState)
         {
-            case IState.Fragile:
-                EventManager.TriggerEvent("PlayerGettingHit", df);
+            case IState.Grab:
+                //Grab Sucessful, reward
+                EventManager.TriggerEvent("PlayerGrabbing", df);
                 break;
-            case IState.Defelct:
+            case IState.Deflect:
+                // Deflect Sucessful, reward
                 EventManager.TriggerEvent("PlayerDeflecting", df);
                 break;
             case IState.Invincible:
                 EventManager.TriggerEvent("PlayerEvading", df);
+                break;
+            case IState.Fragile:
+                EventManager.TriggerEvent("PlayerGettingHit", df);
                 break;
         }
     }

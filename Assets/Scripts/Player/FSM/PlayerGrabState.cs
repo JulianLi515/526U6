@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class PlayerDeflectState : PlayerState
+public class PlayerGrabState : PlayerState
 {
-    public PlayerDeflectState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerGrabState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 
@@ -10,16 +10,16 @@ public class PlayerDeflectState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        input.isDeflectBuffered = false;
-        player.DeflectCtrl.Deflect();
+        input.isGrabBuffered = false;
+        player.GrabCtrl.Grab();
         //TODO; modify, there must be 1 frame of Fragile when deflect finished
-        player.iState = Player.IState.Deflect;
+        player.iState = Player.IState.Grab;
     }
 
     public override void Exit()
     {
         base.Exit();
-        player.DeflectCtrl.DefelectOver();
+        player.GrabCtrl.GrabOver();
         //TODO; modify, there must be 1 frame of Fragile when deflect finished
         player.iState = Player.IState.Fragile;
     }
@@ -27,14 +27,14 @@ public class PlayerDeflectState : PlayerState
 
     public override bool Update()
     {
-        if( base.Update())
+        if (base.Update())
         {
             return true;
         }
 
         player.AirMoveCtrl.Freeze();
 
-        if (player.DeflectCtrl.timer.TimeUp())
+        if (player.GrabCtrl.timer.TimeUp())
         {
             player.stateMachine.ChangeState(player.fallState);
             return true;

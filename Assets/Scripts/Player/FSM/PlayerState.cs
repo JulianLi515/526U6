@@ -39,6 +39,12 @@ public class PlayerState
             stateMachine.ChangeState(player.deflectState);
             return true;
         }
+
+        if (input.Grab || input.isGrabBuffered)
+        {
+            stateMachine.ChangeState(player.grabState);
+            return true;
+        }
         return false;
     }
 

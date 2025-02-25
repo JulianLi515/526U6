@@ -4,13 +4,11 @@ public class DeflectController
 {
     Player player;
     public GameObject deflectBox;
-    public float deflectDuration;
     public Timer timer;
 
     public DeflectController(Player player)
     {
         this.player = player;
-        this.deflectDuration = player.deflectDuration;
         timer = new Timer();
         player.deflectTimer = timer;
         player.TimerCountDownCtrl.register(timer);
@@ -26,7 +24,7 @@ public class DeflectController
         {
             deflectBox = Player.Instantiate(player.deflectBoxPrefab, new Vector3(player.transform.position.x - player.deflectHitboxOffsetX, player.transform.position.y + player.deflectHitboxOffsetY, 0), Quaternion.identity, player.transform);
         }
-        timer.Set(deflectDuration);
+        timer.Set(player.deflectDuration);
     }
 
     public void DefelectOver()

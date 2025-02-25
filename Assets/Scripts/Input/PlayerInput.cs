@@ -24,6 +24,10 @@ public class PlayerInput : MonoBehaviour
     public bool isDeflectBuffered { get; set; }
     public float deflectBufferTimeWindow;
     WaitForSeconds deflectBufferTime;
+    public bool Grab => inputActions.GamePlay.Grab.WasPressedThisFrame();
+    public bool isGrabBuffered { get; set; }
+    public float grabBufferTimeWindow;
+    WaitForSeconds grabBufferTime;
     public Vector2 AxesInput => inputActions.GamePlay.Move.ReadValue<Vector2>();
     public float Xinput => AxesInput.x;
     public float Yinput => AxesInput.y;
@@ -70,6 +74,11 @@ public class PlayerInput : MonoBehaviour
         StopCoroutine(nameof(DeflectBufferCoroutine));
         StartCoroutine(nameof(DeflectBufferCoroutine));
     }
+    public void SetGrabBufferTimer()
+    {
+        StopCoroutine(nameof(GrabBufferCoroutine));
+        StartCoroutine(nameof(GrabBufferCoroutine));
+    }
     IEnumerator JumpBufferCoroutine()
     {
         isJumpBuffered = true;
@@ -95,6 +104,12 @@ public class PlayerInput : MonoBehaviour
         isDeflectBuffered = false;
     }
 
+    IEnumerator GrabBufferCoroutine()
+    {
+        isGrabBuffered = true;
+        yield return grabBufferTime;
+        isGrabBuffered = false;
+    }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         // Re-enable gameplay inputs once the new scene is fully loaded
