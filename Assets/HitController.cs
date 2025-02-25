@@ -9,6 +9,9 @@ public class HitController : MonoBehaviour,Deflectable
     private int hitResult;
     private Rigidbody2D rb;
     private Rigidbody2D rbParent;
+
+    public bool grabbable { get; set; }
+    public int id { get; set; }
     void Start()
     {
         knockBackController = GetComponentInParent<KnockBackController>();
@@ -149,4 +152,10 @@ public class HitController : MonoBehaviour,Deflectable
         }
     }
     public Transform GetTransform() { return transform; }
+
+    public bool canGrab()
+    {
+        return grabbable;
+    }
+    public int getID() { return id; }
 }

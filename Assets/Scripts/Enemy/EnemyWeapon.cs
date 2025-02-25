@@ -12,6 +12,8 @@ public class EnemyWeapon : MonoBehaviour,Deflectable
     public float frequency;
     public int isActive; // isActive is equvilant to is Attacking
     public Transform dfTransform { get; set; }
+    public bool grabbable { get; set; }
+    public int id { get; set; }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -115,4 +117,10 @@ public class EnemyWeapon : MonoBehaviour,Deflectable
             }
         }
     }
+
+    public bool canGrab()
+    {
+        return grabbable;
+    }
+    public int getID() { return id; }
 }

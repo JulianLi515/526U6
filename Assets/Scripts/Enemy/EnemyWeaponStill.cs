@@ -12,6 +12,8 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     public int isActive; // isActive is equvilant to is Attacking
     //TODO: Mechanism to prevent Dereferencing Null dfTransform pointer
     public Transform dfTransform { get; set; }
+    public int id { get; set; }
+    public bool grabbable { get; set; }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -113,4 +115,9 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         }
     }
     public Transform GetTransform() { return transform; }
+    public bool canGrab()
+    {
+        return grabbable;
+    }
+    public int getID () { return id; }
 }
