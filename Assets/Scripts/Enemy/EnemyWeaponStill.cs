@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Specialized;
 using System.Diagnostics;
+using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
@@ -24,6 +25,7 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         EventManager.StartListening<Deflectable>("PlayerDeflecting", OnDeflect);
         EventManager.StartListening<Deflectable>("PlayerGettingHit", OnSuccess);
         EventManager.StartListening<Deflectable>("PlayerEvading", OnFailure);
+        EventManager.StartListening<Deflectable>("PlayerGrabbing", OnGrab);
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         EventManager.StopListening<Deflectable>("PlayerDeflecting", OnDeflect);
         EventManager.StopListening<Deflectable>("PlayerGettingHit", OnSuccess);
         EventManager.StopListening<Deflectable>("PlayerEvading", OnFailure);
+        EventManager.StopListening<Deflectable>("PlayerGrabbing", OnGrab);
     }
 
     private void Blink()
@@ -45,6 +48,7 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         if (frequency == 0)
         {
             isActive = 1;
+            gameObject.SetActive(true);
         }
 
         //Active when attack
@@ -114,10 +118,26 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
             }
         }
     }
+
+    private void OnGrab(Deflectable df)
+    {
+        if(ReferenceEquals(df, this))
+        // Check if this enemy is the one attacking and deflected
+        // Stay stuned and not attacking for 5s;
+        {
+            if (grabbable)
+            {
+                UnityEngine.Debug.Log($"{name}'s attack is Grabbed by player, Destroy");
+                gameObject.SetActive(false);
+                frequency = 5f;
+            }
+        }
+    }
     public Transform GetTransform() { return transform; }
     public bool canGrab()
     {
-        return grabbable;
+        return true;
     }
-    public int getID () { return id; }
+
+    public int getID () { return 1; }
 }

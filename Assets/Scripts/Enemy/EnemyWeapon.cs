@@ -118,6 +118,19 @@ public class EnemyWeapon : MonoBehaviour,Deflectable
         }
     }
 
+    public void onGrab(Deflectable df)
+    {
+        if (ReferenceEquals(df, this))
+        // Check if this enemy is the one attacking and deflected
+        // Stay stuned and not attacking for 5s;
+        {
+            if (grabbable)
+            {
+                UnityEngine.Debug.Log($"{name}'s attack is Grabbed by player, Destroy");
+            }
+        }
+    }
+
     public bool canGrab()
     {
         return grabbable;
