@@ -20,11 +20,11 @@ public class DeflectController
     {
         if (player.facingDir == 1)
         {
-            deflectBox = Player.Instantiate(player.deflectBoxPrefab, new Vector3(player.transform.position.x + 6f, player.transform.position.y + 0.25f, 0), Quaternion.identity, player.transform);
+            deflectBox = Player.Instantiate(player.deflectBoxPrefab, new Vector3(player.transform.position.x + player.deflectHitboxOffsetX, player.transform.position.y + player.deflectHitboxOffsetY, 0), Quaternion.identity, player.transform);
         }
         else
         {
-            deflectBox = Player.Instantiate(player.deflectBoxPrefab, new Vector3(player.transform.position.x - 6f, player.transform.position.y + 0.25f, 0), Quaternion.identity, player.transform);
+            deflectBox = Player.Instantiate(player.deflectBoxPrefab, new Vector3(player.transform.position.x - player.deflectHitboxOffsetX, player.transform.position.y + player.deflectHitboxOffsetY, 0), Quaternion.identity, player.transform);
         }
         timer.Set(deflectDuration);
     }

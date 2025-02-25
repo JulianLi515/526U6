@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 6154383912242399294}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -1, z: 0, w: 0.00000074309366}
-  m_LocalPosition: {x: 10.976234, y: -15.493044, z: 0}
+  m_LocalPosition: {x: 26.9, y: 27.4, z: -0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -312,12 +312,14 @@ MonoBehaviour:
   groundCheckDistance: 1
   wallCheckTop: {fileID: 310651457259719066}
   wallCheckBottom: {fileID: 7136984108579134553}
-  wallCheckDistance: 0.25
+  wallCheckDistance: 2.5
   level:
     serializedVersion: 2
     m_Bits: 8
   deflectBox: {fileID: 0}
-  deflectDuration: 0.1
+  deflectDuration: 0.3
+  deflectHitboxOffsetX: 0
+  deflectHitboxOffsetY: 0
   rollSpeed: 100
   rollCoolDown: 0.2
   rollDuration: 0.2

@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
     public GameObject deflectBox;
     public float deflectDuration;
     public Timer deflectTimer;
+    public float deflectHitboxOffsetX;
+    public float deflectHitboxOffsetY;
 
     [Header("Roll")]
     public float rollSpeed;
