@@ -24,16 +24,6 @@ public class Player : MonoBehaviour
     public int frameRate = 60;
     public IState iState;
 
-    [Header("GroundMovement")]
-    [SerializeField] private Vector2 rawSpeed;
-    public float HorizontalSpeedFalling;
-    public float HorizontalSpeedGround;
-    public int facingDir = 1;
-    public float JumpInitialSpeed;
-    public int JumpCounter;
-    public bool jumpable => JumpCounter > 0;
-
-
     [Header("LevelCollision")]
     public Transform groundCheckLeft;
     public Transform groundCheckRight;
@@ -43,12 +33,29 @@ public class Player : MonoBehaviour
     public float wallCheckDistance;
     public LayerMask level;
 
+    [Header("GroundMovement")]
+    [SerializeField] private Vector2 rawSpeed;
+    public float HorizontalSpeedFalling;
+    public float HorizontalSpeedGround;
+    public int facingDir = 1;
+    public float JumpInitialSpeed;
+    public int JumpCounter;
+    public bool jumpable => JumpCounter > 0;
+
+    [Header("WallJump")]
+    public float wallSlideSpeed;
+    public float wallJumpSpeedX;
+    public float wallJumpSpeedY;
+    public float wallJumpFreeze;
+    public Timer wallJumpFreezeTimer;
+
     [Header("Deflect")]
     public GameObject deflectBoxPrefab;
     public float deflectDuration;
     public Timer deflectTimer;
     public float deflectHitboxOffsetX;
     public float deflectHitboxOffsetY;
+    public float deflectJumpSpeed;
 
     [Header("Grab")]
     public GameObject grabBoxPrefab;
@@ -65,12 +72,6 @@ public class Player : MonoBehaviour
     public Timer rollDurationTimer;
     public float rollInvincibleDuration;
 
-    [Header("WallJump")]
-    public float wallSlideSpeed;
-    public float wallJumpSpeedX;
-    public float wallJumpSpeedY;
-    public float wallJumpFreeze;
-    public Timer wallJumpFreezeTimer;
 
     [Header("Invincible")]
     public Timer Invincibletimer;
@@ -248,7 +249,7 @@ public class Player : MonoBehaviour
                 break;
             case IState.Deflect:
                 // Deflect Sucessful, deflectreward
-                stateMachine.ChangeState(deflectRewardState);
+                stateMachine.ChangeState(deflectRewardState,df);
                 EventManager.TriggerEvent("PlayerDeflecting", df);
                 break;
             case IState.Invincible:

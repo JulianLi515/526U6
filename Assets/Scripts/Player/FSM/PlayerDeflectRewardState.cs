@@ -9,6 +9,7 @@ public class PlayerDeflectRewardState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        player.DeflectCtrl.Bump();
     }
 
     public override void Exit()
@@ -23,6 +24,38 @@ public class PlayerDeflectRewardState : PlayerState
 
     public override bool Update()
     {
-        return base.Update();
+        if (base.Update())
+        {
+            return true;
+        }
+
+        player.FlipCtrl.onHorizontalInput();
+        player.AirMoveCtrl.OnHorizontalInput(input.Xinput);
+
+        //deflect jump => wallSlide
+        if ((input.Xinput * player.facingDir > 0) && player.LevelCollisionCtrl.IsWallDetected())
+        {
+            stateMachine.ChangeState(player.wallSlideState);
+            return true;
+        }
+        //deflect jump => dash
+        if ((input.Roll || input.isRollBuffered) && player.RollCtrl.rollCoolDownTimer.TimeUp())
+        {
+            stateMachine.ChangeState(player.dashState);
+            return true;
+        }
+        //deflect jump => jump
+        if ((input.Jump || input.isJumpBuffered) && player.jumpable)
+        {
+            stateMachine.ChangeState(player.jumpState);
+            return true;
+        }
+        //deflect jump => fall
+        if (rb.linearVelocity.y < 0)
+        {
+            stateMachine.ChangeState(player.fallState);
+            return true;
+        }
+        return false;
     }
 }
