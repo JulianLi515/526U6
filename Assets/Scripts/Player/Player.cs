@@ -151,6 +151,7 @@ public class Player : MonoBehaviour
 
         //Subscribe to enemyAttacking
         EventManager.StartListening<Deflectable>("EnemyAttacking", OnDamage);
+        EventManager.StartListening("InvincibleStop", OnInvincibleStop);
 
     }
 
@@ -180,6 +181,7 @@ public class Player : MonoBehaviour
     private void OnDestroy()
     {
         EventManager.StopListening<Deflectable>("EnemyAttacking", OnDamage);
+        EventManager.StopListening("InvincibleStop", OnInvincibleStop);
     }
 
     void OnGUI()
@@ -216,16 +218,19 @@ public class Player : MonoBehaviour
         {
             case IState.Fragile:
                 EventManager.TriggerEvent("PlayerGettingHit", df);
-                Debug.Log("PlayerGettingHit");
                 break;
             case IState.Defelct:
                 EventManager.TriggerEvent("PlayerDeflecting", df);
-                Debug.Log("PlayerDeflecting");
                 break;
             case IState.Invincible:
                 EventManager.TriggerEvent("PlayerEvading", df);
-                Debug.Log("PlayerEvading");
                 break;
         }
+    }
+
+
+    private void OnInvincibleStop()
+    {
+        iState = IState.Fragile;
     }
 }
