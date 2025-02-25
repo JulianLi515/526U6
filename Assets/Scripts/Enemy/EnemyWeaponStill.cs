@@ -10,10 +10,15 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     public SpriteRenderer circle;
     public float frequency;
     public int isActive; // isActive is equvilant to is Attacking
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //TODO: Mechanism to prevent Dereferencing Null dfTransform pointer
+    public Transform dfTransform { get; set; }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dfTransform = transform;
+        UnityEngine.Debug.Log("transform position: " + transform.position);
+        UnityEngine.Debug.Log("Dftransform position: " + dfTransform.position);
+        UnityEngine.Debug.Log("df pionter A: " + this);
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
         isActive = 1;
         frequency = 2f;

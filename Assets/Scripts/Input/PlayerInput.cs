@@ -49,11 +49,16 @@ public class PlayerInput : MonoBehaviour
     {
         inputActions.GamePlay.Disable();
     }
+    public void DisableGamePlayInputs(float duration)
+    {
+        StartCoroutine(LoseControl(duration));
+    }
 
     public void EnableGamePlayInputs()
     {
         inputActions.GamePlay.Enable();
     }
+
     public void SetJumpBufferTimer()
     {
         StopCoroutine(nameof(JumpBufferCoroutine));
@@ -79,6 +84,7 @@ public class PlayerInput : MonoBehaviour
         StopCoroutine(nameof(GrabBufferCoroutine));
         StartCoroutine(nameof(GrabBufferCoroutine));
     }
+
     IEnumerator JumpBufferCoroutine()
     {
         isJumpBuffered = true;
@@ -109,6 +115,13 @@ public class PlayerInput : MonoBehaviour
         isGrabBuffered = true;
         yield return grabBufferTime;
         isGrabBuffered = false;
+    }
+
+    IEnumerator LoseControl(float duration)
+    {
+        DisableGamePlayInputs();
+        yield return new WaitForSeconds(duration);
+        EnableGamePlayInputs();
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

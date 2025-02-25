@@ -11,10 +11,11 @@ public class EnemyWeapon : MonoBehaviour,Deflectable
     public SpriteRenderer circle;
     public float frequency;
     public int isActive; // isActive is equvilant to is Attacking
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public Transform dfTransform { get; set; }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        dfTransform = transform;
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
         isActive = 1;
         frequency = 2f;

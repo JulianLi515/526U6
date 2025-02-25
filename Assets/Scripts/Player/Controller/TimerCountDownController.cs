@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// TODO: replace with Unity built in Timer
 public class TimerCountDownController
 {
     HashSet<Timer> timers;

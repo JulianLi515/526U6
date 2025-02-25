@@ -34,6 +34,7 @@ public class PlayerState
 
     public virtual bool Update()
     {
+
         if (input.Deflect || input.isDeflectBuffered)
         {
             stateMachine.ChangeState(player.deflectState);

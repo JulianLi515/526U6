@@ -2,7 +2,10 @@ using UnityEngine;
 
 public interface Deflectable
 {
-    protected virtual void OnDeflect(Deflectable attackingEnemy)
+    public Transform dfTransform {  get; set; }
+    //public float dfPower { get; set; }
+
+    protected virtual void OnDeflect(Deflectable df)
     {
 
     }

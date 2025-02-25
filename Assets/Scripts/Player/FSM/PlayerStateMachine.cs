@@ -7,10 +7,15 @@ public class PlayerStateMachine
     public PlayerState currentState { get; private set; }
     public PlayerState previousState { get; private set; }
 
+    public bool stateLocked;
+
+    public Deflectable trigger { get; set; }
+
     public void Initialize(PlayerState _startState)
     {
         currentState = _startState;
         currentState.Enter();
+        stateLocked = false;
     }
 
     public void ChangeState(PlayerState _newState)
@@ -19,6 +24,15 @@ public class PlayerStateMachine
         currentState.Exit();
         currentState = _newState;
         currentState.Enter();
+        trigger = null;
+    }
+    public void ChangeState(PlayerState _newState, Deflectable _trigger)
+    {
+        previousState = currentState;
+        currentState.Exit();
+        currentState = _newState;
+        currentState.Enter();
+        trigger = _trigger;
     }
 
     public void ChangeToPreviousState()
