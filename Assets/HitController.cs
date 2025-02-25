@@ -148,4 +148,5 @@ public class HitController : MonoBehaviour,Deflectable
             }
         }
     }
+    public Transform GetTransform() { return transform; }
 }

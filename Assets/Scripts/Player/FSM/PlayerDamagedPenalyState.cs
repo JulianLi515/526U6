@@ -9,14 +9,15 @@ public class PlayerDamagedPenalyState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        Vector2 direction = (player.transform.position - stateMachine.trigger.dfTransform.position).normalized;
-        player.ApplyForceCtrl.ApplyKnockback(direction);
-        player.InvincibleCtrl.GoInvincivle(player.KnockBackinvincibilityDuration);
+        player.KnockBackCtrl.Prep();
+        player.iState = Player.IState.Invincible;
+        
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.iState = Player.IState.Fragile;
     }
 
     public override void LateUpdate()
@@ -31,7 +32,12 @@ public class PlayerDamagedPenalyState : PlayerState
             return true;
         }
         //Call only one frame, Exit after force Applied
-        stateMachine.ChangeState(player.idleState);
+        player.KnockBackCtrl.ApplyKnockback();
+
+        if (player.KnockBackCtrl.timer.TimeUp())
+        {
+            stateMachine.ChangeState(player.idleState);
+        }
         return false;
     }
 }

@@ -1,12 +1,16 @@
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public interface Deflectable
 {
-    public Transform dfTransform {  get; set; }
-    //public float dfPower { get; set; }
+    public Transform dfTransform {  get; }
 
     protected virtual void OnDeflect(Deflectable df)
     {
 
+    }
+    public virtual Transform GetTransform()
+    {
+        return null;
     }
 }

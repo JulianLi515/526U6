@@ -16,9 +16,6 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     {
         rb = GetComponent<Rigidbody2D>();
         dfTransform = transform;
-        UnityEngine.Debug.Log("transform position: " + transform.position);
-        UnityEngine.Debug.Log("Dftransform position: " + dfTransform.position);
-        UnityEngine.Debug.Log("df pionter A: " + this);
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
         isActive = 1;
         frequency = 2f;
@@ -115,4 +112,5 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
             }
         }
     }
+    public Transform GetTransform() { return transform; }
 }

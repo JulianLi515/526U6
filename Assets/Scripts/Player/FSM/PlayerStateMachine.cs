@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerStateMachine
@@ -22,17 +23,17 @@ public class PlayerStateMachine
     {
         previousState = currentState;
         currentState.Exit();
+        trigger = null;
         currentState = _newState;
         currentState.Enter();
-        trigger = null;
     }
     public void ChangeState(PlayerState _newState, Deflectable _trigger)
     {
         previousState = currentState;
         currentState.Exit();
         currentState = _newState;
-        currentState.Enter();
         trigger = _trigger;
+        currentState.Enter();
     }
 
     public void ChangeToPreviousState()

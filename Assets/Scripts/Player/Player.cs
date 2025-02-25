@@ -79,7 +79,8 @@ public class Player : MonoBehaviour
     public float knockbackThreshold = 5f;
     public float knockbackForceMultiplier = 10f;
     public float controlLossDuration = 0.5f;
-    public float KnockBackinvincibilityDuration = 0.2f;
+    public float KnockBackDuration = 0.2f;
+    public Timer KnockBackTimer;
 
 
     [Header("Animation")]
@@ -104,7 +105,7 @@ public class Player : MonoBehaviour
     public WallMovementController WallMovementCtrl { get; private set; }
     public DeflectController DeflectCtrl { get; private set; }
     public GrabController GrabCtrl { get; private set; }
-    public ApplyForceController ApplyForceCtrl { get; private set; }
+    public KnockPlayerBackController KnockBackCtrl { get; private set; }
     #endregion
 
     #region States
@@ -142,7 +143,7 @@ public class Player : MonoBehaviour
         WallMovementCtrl = new WallMovementController(this);
         DeflectCtrl = new DeflectController(this);
         GrabCtrl = new GrabController(this);
-        ApplyForceCtrl = new ApplyForceController(this);
+        KnockBackCtrl = new KnockPlayerBackController(this);
 
 
         stateMachine = new PlayerStateMachine();
@@ -238,7 +239,6 @@ public class Player : MonoBehaviour
     private void OnDamage(Deflectable df)
     {
 
-
         switch (iState)
         {
             case IState.Grab:
@@ -248,16 +248,15 @@ public class Player : MonoBehaviour
                 break;
             case IState.Deflect:
                 // Deflect Sucessful, deflectreward
-                //stateMachine.ChangeState(deflectRewardState);
+                stateMachine.ChangeState(deflectRewardState);
                 EventManager.TriggerEvent("PlayerDeflecting", df);
                 break;
             case IState.Invincible:
-                EventManager.TriggerEvent("PlayerEvading", df);
+                //EventManager.TriggerEvent("PlayerEvading", df);
                 break;
             case IState.Fragile:
                 // Get Hit, go To damagedPenalty
-                stateMachine.ChangeState(damagePenaltyState);
-                UnityEngine.Debug.Log("df pionter B: " + df);
+                stateMachine.ChangeState(damagePenaltyState,df);
                 EventManager.TriggerEvent("PlayerGettingHit", df);
                 break;
         }
