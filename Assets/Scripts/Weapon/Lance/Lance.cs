@@ -12,7 +12,8 @@ public class Lance : PlayerWeapon
 
 
     [Header("Initialization")]
-    public Vector3 spwanPoint;
+    public Transform spwanPoint;
+    public Transform shootingPostion;
 
     [Header("Timer")]
     public float timer;
@@ -50,7 +51,7 @@ public class Lance : PlayerWeapon
 
     private void OnEnable()
     {
-        transform.position = player.transform.position + spwanPoint;
+        transform.position = spwanPoint.position;
     }
     private void OnDisable()
     {

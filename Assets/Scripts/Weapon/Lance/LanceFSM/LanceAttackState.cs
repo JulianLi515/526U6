@@ -10,24 +10,32 @@ public class LanceAttackState : LanceState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Called");
         GameObject throwingLance;
         if (stateMachine.attackInfo.isUpPressed())
         {
-            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, new Vector3(lance.transform.position.x, lance.transform.position.y, 0), Quaternion.identity);
+            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0), Quaternion.identity);
+            throwingLance.transform.up = Vector2.down;
             return;
         }
-        if(stateMachine.attackInfo.isDownPressed())
+        if (stateMachine.attackInfo.isDownPressed())
         {
-            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, new Vector3(lance.transform.position.x, lance.transform.position.y, 0), Quaternion.identity);
+            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0), Quaternion.identity);
             return;
         }
         // not pressed, throwing at facing direction;
-        throwingLance = Lance.Instantiate(lance.throwableLancePrefabHorizontal, new Vector3(lance.transform.position.x, lance.transform.position.y, 0), Quaternion.identity);
+        throwingLance = Lance.Instantiate(lance.throwableLancePrefabHorizontal, new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0), Quaternion.identity);
+        if (lance.player.facingDir == -1)
+        {
+            throwingLance.transform.right = Vector2.left;
+        }
     }
 
     public override void Exit()
     {
         base.Exit();
+        //Set Disappear immediately
+        lance.Disappear();
     }
 
     public override void Update()

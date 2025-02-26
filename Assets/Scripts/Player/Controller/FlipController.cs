@@ -20,11 +20,11 @@ public class FlipController
     //Flip if input(float _x) vector has opposite horizonal direction with respect to facingDirection
     public void onHorizontalInput()
     {
-        if (player.input.Xinput > 0 && player.facingDir == -1)
+        if (player.facingDir == -1 && player.input.Xinput > 0 )
         {
             Flip();
         }
-        else if (player.input.Xinput < 0 && player.facingDir == 1)
+        else if (player.facingDir == 1 && player.input.Xinput < 0)
         {
             Flip();
         }

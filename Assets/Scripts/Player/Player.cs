@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Vector2 rawSpeed;
     public float HorizontalSpeedFalling;
     public float HorizontalSpeedGround;
-    public int facingDir = 1;
+    public int facingDir;
     public float JumpInitialSpeed;
     public int JumpCounter;
     public bool jumpable => JumpCounter > 0;

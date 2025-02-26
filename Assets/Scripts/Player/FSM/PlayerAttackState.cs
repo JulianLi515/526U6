@@ -18,11 +18,14 @@ public class PlayerAttackState : PlayerState
         if (input.Yinput >0 || input.isUpBuffered)
         {
             player.WeaponCtrl.Attack(new AttackInfo(0b01));
+            return;
         }
         if(input.Yinput < 0 || input.isDownBuffered)
         {
-            player.WeaponCtrl.Attack(new AttackInfo(0b11));
+            player.WeaponCtrl.Attack(new AttackInfo(0b10));
+            return;
         }
+        player.WeaponCtrl.Attack(new AttackInfo(0b00));
     }
 
     public override void Exit()
