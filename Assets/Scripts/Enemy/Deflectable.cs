@@ -7,7 +7,6 @@ public interface Deflectable
     public Transform dfTransform {  get; }
     public bool grabbable {  get; }
     public int id { get; }
-    public bool isDropItem {  get; }
     protected virtual void OnDeflect(Deflectable df){ }
     protected virtual void OnGrab(Deflectable df) { }
     protected virtual void OnSuccess(Deflectable df) { }

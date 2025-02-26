@@ -171,4 +171,8 @@ public class HitController : MonoBehaviour,Deflectable
         return grabbable;
     }
     public int getID() { return id; }
+    public bool isDrop()
+    {
+        return false;
+    }
 }
