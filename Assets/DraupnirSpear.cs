@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DraupnirSpear : MonoBehaviour
@@ -13,6 +14,7 @@ public class DraupnirSpear : MonoBehaviour
     
     public SpearState state;
     public float moveSpeed;
+    public float liveTime;
     private Rigidbody2D rb;
     private PlatformEffector2D pe;
     void Start()
@@ -22,6 +24,7 @@ public class DraupnirSpear : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionY;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         pe = GetComponent<PlatformEffector2D>();
+        StartCoroutine(nameof(DestroySpearCoroutine));
     }
 
     // Update is called once per frame
@@ -58,7 +61,7 @@ public class DraupnirSpear : MonoBehaviour
         }
         if (collision.collider.CompareTag("Player"))
         {
-            Debug.Log("Playerddddddddddddddd");
+            //Debug.Log("Playerddddddddddddddd");
             collision.gameObject.transform.parent = transform;
         }
     }
@@ -69,5 +72,11 @@ public class DraupnirSpear : MonoBehaviour
         {
             collision.gameObject.transform.parent = null;
         }
+    }
+
+    IEnumerator DestroySpearCoroutine()
+    {
+        yield return new WaitForSeconds(liveTime);
+        Destroy(gameObject);
     }
 }
