@@ -10,7 +10,7 @@ public interface Deflectable
     protected virtual void OnGrab(Deflectable df) { }
     protected virtual void OnSuccess(Deflectable df) { }
     protected virtual void OnFailure(Deflectable df) { }
-    public virtual Transform GetTransform() { return null;}
+    public virtual Vector3 getPosition() { return new Vector3(0,0,0);}
     public bool canGrab() { return false; }
     public int getID() { return 0; }
 }

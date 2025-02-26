@@ -79,8 +79,8 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     private void OnDeflect(Deflectable df)
     {
         if (ReferenceEquals(df, this))
-        // Check if this enemy is the one attacking and deflected
-        // Stay stuned and not attacking for 5s;
+        // Check if this enemy is the sender
+
         {
             if (isActive == 1)
             {
@@ -93,8 +93,8 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     private void OnSuccess(Deflectable df)
     {
         if (ReferenceEquals(df, this))
-        // Check if this enemy is the one attacking and deflected
-        // Stay stuned and not attacking for 5s;
+        // Check if this enemy is the sender
+ 
         {
             if (isActive == 1)
             {
@@ -109,8 +109,8 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     private void OnFailure(Deflectable df)
     {
         if (ReferenceEquals(df, this))
-        // Check if this enemy is the one attacking and deflected
-        // Stay stuned and not attacking for 5s;
+        // Check if this enemy is the sender
+
         {
             if (isActive == 1)
             {
@@ -122,10 +122,10 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     private void OnGrab(Deflectable df)
     {
         if(ReferenceEquals(df, this))
-        // Check if this enemy is the one attacking and deflected
-        // Stay stuned and not attacking for 5s;
+        // Check if this enemy is the sender
+
         {
-            if (grabbable)
+            if (canGrab())
             {
                 UnityEngine.Debug.Log($"{name}'s attack is Grabbed by player, Destroy");
                 gameObject.SetActive(false);
@@ -133,11 +133,7 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
             }
         }
     }
-    public Transform GetTransform() { return transform; }
-    public bool canGrab()
-    {
-        return true;
-    }
-
+    public Vector3 getPosition() { return transform.position; }
+    public bool canGrab() { return true;  }
     public int getID () { return 1; }
 }

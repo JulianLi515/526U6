@@ -107,6 +107,7 @@ public class Player : MonoBehaviour
     public DeflectController DeflectCtrl { get; private set; }
     public GrabController GrabCtrl { get; private set; }
     public KnockPlayerBackController KnockBackCtrl { get; private set; }
+    public OnFlyableController OnFlyableCtrl { get; private set; }
     #endregion
 
     #region States
@@ -145,6 +146,7 @@ public class Player : MonoBehaviour
         DeflectCtrl = new DeflectController(this);
         GrabCtrl = new GrabController(this);
         KnockBackCtrl = new KnockPlayerBackController(this);
+        OnFlyableCtrl = new OnFlyableController(this);
 
 
         stateMachine = new PlayerStateMachine();
@@ -244,7 +246,7 @@ public class Player : MonoBehaviour
         {
             case IState.Grab:
                 //Grab Sucessful, grabreward
-                //stateMachine.ChangeState(grabRewardState);
+                stateMachine.ChangeState(grabRewardState, df);
                 EventManager.TriggerEvent("PlayerGrabbing", df);
                 break;
             case IState.Deflect:

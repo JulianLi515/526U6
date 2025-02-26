@@ -26,10 +26,9 @@ public class PlayerIdleState : PlayerState
             return true;
         }
         // stand on spear
-        if (player.transform.parent != null)
+        if (player.OnFlyableCtrl.OnFlyingPlatform)
         {
-            Vector2 parentSpeed = player.transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
-            player.rb.linearVelocity = parentSpeed;
+            player.OnFlyableCtrl.Still();
         }
 
         player.FlipCtrl.onHorizontalInput();

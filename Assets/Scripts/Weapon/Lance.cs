@@ -1,31 +1,16 @@
 using UnityEngine;
 
-public class Lance : MonoBehaviour
+public class Lance : PlayerWeapon
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    //Consider StateMachine?
 
-    public enum LanceState
-    {
-        TrackingTarget,
-        TrackingBackOriginator,
-        DisFunctioned
-    }
-
-    public GameObject originator;
-    public GameObject target;
-    public SpriteRenderer tip;
-    public SpriteRenderer rod;
-
-    private Rigidbody2D rb;
-
-    public float moveSpeed;
-    public LanceState lanceState;
-
+    Player player;
+    GameObject prefab;
 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+       
     }
 
     // Update is called once per frame
@@ -33,4 +18,15 @@ public class Lance : MonoBehaviour
     {
         
     }
+
+    public override void attck()
+    {
+        base.attck();
+    }
+
+    public override void grabSkill()
+    {
+        base.grabSkill();
+    }
+
 }
