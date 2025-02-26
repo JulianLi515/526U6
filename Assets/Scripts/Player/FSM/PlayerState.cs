@@ -46,6 +46,10 @@ public class PlayerState
             stateMachine.ChangeState(player.grabState);
             return true;
         }
+        if (player.LadderInteractionCheckOnCurrentState())
+        {
+            return true;
+        }
         return false;
     }
 

@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     [Header("Stats")]
     public SpriteRenderer playerPrototypeSprite;
     public int frameRate = 60;
+    public float gravityScale;
     public IState iState;
 
     [Header("LevelCollision")]
@@ -41,6 +42,10 @@ public class Player : MonoBehaviour
     public float JumpInitialSpeed;
     public int JumpCounter;
     public bool jumpable => JumpCounter > 0;
+
+    [Header("LadderMovement")]
+    public float ladderHorizontalSpeed;
+    public float ladderVerticalSpeed;
 
     [Header("WallJump")]
     public float wallSlideSpeed;
@@ -83,7 +88,7 @@ public class Player : MonoBehaviour
     public float KnockBackDuration = 0.2f;
     public Timer KnockBackTimer;
 
-
+    private bool ladderCheck;
     [Header("Animation")]
     [SerializeField] private string animState;
 
@@ -126,6 +131,7 @@ public class Player : MonoBehaviour
     public PlayerState deflectRewardState { get; private set; }
     public PlayerState grabRewardState { get; private set; }
     public PlayerState damagePenaltyState { get; private set; }
+    public PlayerState ladderMoveState { get; private set; }
     #endregion
 
     private void Awake()
@@ -163,6 +169,7 @@ public class Player : MonoBehaviour
         deflectRewardState = new PlayerDeflectRewardState(this, stateMachine, "DeflectReward");
         grabRewardState = new PlayerGrabRewardState(this, stateMachine, "GrabReward");
         damagePenaltyState = new PlayerDamagedPenalyState(this, stateMachine, "DamagePenalty");
+        ladderMoveState = new PlayerLadderMoveState(this, stateMachine, "LadderMove");
 
     }
 
@@ -173,7 +180,8 @@ public class Player : MonoBehaviour
         
         //assign component
         rb = GetComponent<Rigidbody2D>();
-        
+        rb.gravityScale = gravityScale;
+
         input.EnableGamePlayInputs();
         stateMachine.Initialize(fallState);
         iState = IState.Fragile;
@@ -269,5 +277,49 @@ public class Player : MonoBehaviour
     private void OnInvincibleStop()
     {
         iState = IState.Fragile;
+    }
+
+    public void StartLadderInteractionCheck()
+    {
+        ladderCheck = true;
+    }
+
+    public void StopLadderInteractionCheck()
+    {
+        ladderCheck = false;
+    }
+
+    public bool LadderInteractionCheckOnCurrentState()
+    {
+        if (ladderCheck)
+        {
+            if (stateMachine.currentState != ladderMoveState)
+            {
+                bool case1 = input.Yinput > 0 && LevelCollisionCtrl.IsGroundDetected();
+                bool case2 = input.Yinput != 0 && !LevelCollisionCtrl.IsGroundDetected();
+                if (case1 || case2)
+                {
+                    stateMachine.ChangeState(ladderMoveState);
+                    return true;
+                }
+            }
+        }
+        else
+        {
+            if (stateMachine.currentState == ladderMoveState)
+            {
+                if (LevelCollisionCtrl.IsGroundDetected())
+                {
+                    stateMachine.ChangeState(idleState);
+                    return true;
+                }
+                else
+                {
+                    stateMachine.ChangeState(fallState);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

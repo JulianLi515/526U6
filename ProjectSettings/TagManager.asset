@@ -7,6 +7,8 @@ TagManager:
   - Level
   - Wall
   - Spear
+  - PlayerInteractBox
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -19,7 +21,7 @@ TagManager:
   - PlayerHitBox
   - EnemyHitBox
   - PlayerInteractBox
-  - 
+  - Ladder
   - 
   - 
   - 

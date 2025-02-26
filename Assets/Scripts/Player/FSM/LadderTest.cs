@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DrpSpearVertical : MonoBehaviour
+public class LadderTest : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -13,12 +13,4 @@ public class DrpSpearVertical : MonoBehaviour
     {
         
     }
-
-    //private void OnTriggerExit(Collider other)
-    //{
-    //    if (other.CompareTag("Player"))
-    //    {
-    //        //other.GetComponent<Player>().OnDamage();
-    //    }
-    //}
 }
