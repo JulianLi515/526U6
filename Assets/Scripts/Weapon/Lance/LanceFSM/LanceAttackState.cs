@@ -12,21 +12,34 @@ public class LanceAttackState : LanceState
         base.Enter();
         lance.Disappear();
         GameObject throwingLance;
-        Vector3 shootPoint = new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0);
+        
+        Vector3 shootPoint;
         BoxCollider2D lanceColliderH = lance.throwableLancePrefabVertical.GetComponent<BoxCollider2D>();
-        float lanceHeight = lanceColliderH.size.y / 2 + lanceColliderH.offset.y;
+        float lanceHeight = lanceColliderH.size.y / 2 - lanceColliderH.offset.y;
+        //Debug.Log(lanceHeight);
+
         if (stateMachine.attackInfo.isUpPressed())
         {
-
             shootPoint = new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0);
-            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0), Quaternion.identity);
+            RaycastHit2D hitH = Physics2D.Raycast(lance.shootingPostion.position, Vector2.up, lanceHeight, lance.ground);
+            if (hitH.collider != null)
+            {
+                shootPoint = hitH.point - Vector2.up * new Vector2(0, lanceHeight);
+            }
+            
+            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, shootPoint, Quaternion.identity);
             throwingLance.transform.up = Vector2.down;
             return;
         }
         if (stateMachine.attackInfo.isDownPressed())
         {
             shootPoint = new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0);
-            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, new Vector3(lance.shootingPostion.position.x, lance.shootingPostion.position.y, 0), Quaternion.identity);
+            RaycastHit2D hitH = Physics2D.Raycast(lance.shootingPostion.position, Vector2.down, lanceHeight, lance.ground);
+            if (hitH.collider != null)
+            {
+                shootPoint = hitH.point + Vector2.up * new Vector2(0, lanceHeight);
+            }
+            throwingLance = Lance.Instantiate(lance.throwableLancePrefabVertical, shootPoint, Quaternion.identity);
             return;
         }
         // move shoot location back if too close to wall

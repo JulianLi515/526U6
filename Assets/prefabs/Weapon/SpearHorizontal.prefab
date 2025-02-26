@@ -297,7 +297,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  moveSpeed: 30
+  moveSpeed: 45
   liveTime: 15
 --- !u!251 &8999599304965456753
 PlatformEffector2D:
