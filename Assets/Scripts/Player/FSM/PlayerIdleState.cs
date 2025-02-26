@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class PlayerIdleState : PlayerState
 {
@@ -23,6 +24,12 @@ public class PlayerIdleState : PlayerState
         if (base.Update())
         {
             return true;
+        }
+        // stand on spear
+        if (player.transform.parent != null)
+        {
+            Vector2 parentSpeed = player.transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
+            player.rb.linearVelocity = parentSpeed;
         }
 
         player.FlipCtrl.onHorizontalInput();
