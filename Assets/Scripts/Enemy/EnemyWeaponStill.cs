@@ -70,8 +70,7 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     {
         if (isActive == 1)
         {
-            UnityEngine.Debug.Log($"{gameObject.name} is trying to damage {other.name}");
-
+            UnityEngine.Debug.Log("trigger");
             EventManager.TriggerEvent("EnemyAttacking", this);
 
         }
@@ -84,7 +83,6 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         {
             if (isActive == 1)
             {
-                UnityEngine.Debug.Log($"{name}'s attack was deflected ! Enter stun for 5s");
                 frequency = 5f;
                 isActive *= -1;
             }
@@ -98,7 +96,6 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         {
             if (isActive == 1)
             {
-                UnityEngine.Debug.Log($"{name}'s attack hit player! Good Job");
                 //disable current attack
                 isActive = 0;
                 frequency = 1f;
@@ -114,7 +111,6 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         {
             if (isActive == 1)
             {
-                UnityEngine.Debug.Log($"{name}'s attack Evaded by Player, Pitty!");
             }
         }
     }
@@ -127,7 +123,6 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
         {
             if (canGrab())
             {
-                UnityEngine.Debug.Log($"{name}'s attack is Grabbed by player, Destroy");
                 gameObject.SetActive(false);
                 frequency = 5f;
             }

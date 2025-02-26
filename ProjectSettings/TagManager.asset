@@ -10,7 +10,7 @@ TagManager:
   - Ground
   - PlayerInteractBox
   - PlayerFeet
-  - Undefined
+  - Spear
   layers:
   - Default
   - TransparentFX
@@ -22,12 +22,12 @@ TagManager:
   - Enemy
   - PlayerHitBox
   - EnemyHitBox
+  - PlayerAttackBox
+  - EnemyAttackBox
   - PlayerInteractBox
+  - Drops
   - Interactable
   - MovingPlatform
-  - Drops
-  - 
-  - 
   - 
   - 
   - 

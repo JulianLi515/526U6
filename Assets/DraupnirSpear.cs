@@ -62,7 +62,7 @@ public class DraupnirSpear : MonoBehaviour
         }
         if (collision.collider.CompareTag("PlayerFeet"))
         {
-            //Debug.Log("Playerddddddddddddddd");
+            Debug.Log("Playerddddddddddddddd");
             collision.gameObject.GetComponent<PlayerFeetController>().SetPlayerParent(transform);
         }
 

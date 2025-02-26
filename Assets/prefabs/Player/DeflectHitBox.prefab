@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 8121586735680698650}
   - component: {fileID: 6658579482978398360}
   - component: {fileID: 732128524338560565}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: DeflectHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}

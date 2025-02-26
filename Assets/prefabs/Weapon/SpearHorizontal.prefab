@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 7566865759813482360}
   - component: {fileID: 1137687594958249864}
   - component: {fileID: 8999599304965456753}
-  m_Layer: 12
+  m_Layer: 15
   m_Name: SpearHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
