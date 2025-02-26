@@ -10,7 +10,7 @@ public class LanceAttackState : LanceState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Called");
+        lance.Disappear();
         GameObject throwingLance;
         if (stateMachine.attackInfo.isUpPressed())
         {
@@ -35,7 +35,6 @@ public class LanceAttackState : LanceState
     {
         base.Exit();
         //Set Disappear immediately
-        lance.Disappear();
     }
 
     public override void Update()

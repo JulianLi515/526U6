@@ -53,7 +53,7 @@ public class DrpSpearVertical : MonoBehaviour
             return;
         }
 
-        if (other.CompareTag("Level"))
+        if (other.CompareTag("Ground"))
         {
             state = SpearState.OnGround;
             rb.linearVelocity = Vector2.zero;

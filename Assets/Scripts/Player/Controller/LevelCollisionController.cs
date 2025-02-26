@@ -22,6 +22,7 @@ public class LevelCollisionController
 
         return leftCheck || rightCheck;
     }
+
     // WallCheck
     public bool IsWallDetected()
     {
