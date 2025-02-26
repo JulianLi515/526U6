@@ -29,13 +29,13 @@ public partial class ParryCheckAction : Action
     {
         if (CheckPoint1.Value)
         {
-            Debug.Log("DDDDDDDDDDDDDsssssssssssss");
+            //Debug.Log("DDDDDDDDDDDDDsssssssssssss");
             //CheckPoint1.Value = false;
             return Status.Failure;
         }
         int hitResult1 = hitController.GetHitResult();
         int hitResult2 = bodyHitController.GetHitResult();
-        Debug.Log("DDDDDDDDDDDDDss");
+        //Debug.Log("DDDDDDDDDDDDDss");
 
         if (hitResult1 == 0)
         {
@@ -117,7 +117,7 @@ public partial class ParryCheckAction : Action
 
     protected override void OnEnd()
     {
-        
+        Debug.Log("DDDDDDDDDDDDDDDD");
     }
 }
 

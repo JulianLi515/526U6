@@ -64,8 +64,9 @@ public class DraupnirSpear : MonoBehaviour
             //Debug.Log("Playerddddddddddddddd");
             collision.gameObject.transform.parent = transform;
         }
+
     }
-    
+
     private void OnCollisionExit2D(UnityEngine.Collision2D collision)
     {
         if (collision.collider.CompareTag("Player"))
