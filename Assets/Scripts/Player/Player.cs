@@ -301,39 +301,4 @@ public class Player : MonoBehaviour
         ladderCheck = false;
     }
 
-    public bool LadderInteractionCheckOnCurrentState()
-    {
-        if (ladderCheck)
-        {
-            if (stateMachine.currentState != ladderMoveState)
-            {
-                bool case1 = input.Yinput > 0 && LevelCollisionCtrl.IsGroundDetected();
-                bool case2 = input.Yinput != 0 && !LevelCollisionCtrl.IsGroundDetected();
-                if (case1 || case2)
-                {
-                    stateMachine.ChangeState(ladderMoveState);
-                    return true;
-                }
-            }
-        }
-        else
-        {
-            if (stateMachine.currentState == ladderMoveState)
-            {
-                if (LevelCollisionCtrl.IsGroundDetected())
-                {
-                    stateMachine.ChangeState(idleState);
-                    return true;
-                }
-                else
-                {
-                    stateMachine.ChangeState(fallState);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
 }

@@ -1,3 +1,4 @@
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 
 public class PlayerLadderMoveState : PlayerState
@@ -27,14 +28,31 @@ public class PlayerLadderMoveState : PlayerState
         {
             return true;
         }
+        player.FlipCtrl.onHorizontalInput();
+        player.rb.linearVelocityX = input.Xinput * player.ladderHorizontalSpeed;
+        player.rb.linearVelocityY = input.Yinput * player.ladderVerticalSpeed;
+
+        //ladder =>jump
         if (input.Jump || input.isJumpBuffered)
         {
             stateMachine.ChangeState(player.jumpState);
             return true;
         }
-        player.FlipCtrl.onHorizontalInput();
-        player.rb.linearVelocityX = input.Xinput * player.ladderHorizontalSpeed;
-        player.rb.linearVelocityY = input.Yinput * player.ladderVerticalSpeed;
+        //ladder => idle/fall
+        if (!player.ladderCheck)
+        {
+            if (player.LevelCollisionCtrl.IsGroundDetected())
+            {
+                stateMachine.ChangeState(player.idleState);
+                return true;
+            }
+            else
+            {
+                stateMachine.ChangeState(player.fallState);
+                return true;
+            }
+        }
+
         return false;
         
     }

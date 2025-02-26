@@ -50,8 +50,16 @@ public class PlayerState
         // any => LadderMove transition to self disable;
         if (stateMachine.currentState != player.ladderMoveState)
         {
-
-            return true;
+            if (player.ladderCheck)
+            {
+                bool case1 = input.Yinput > 0 && player.LevelCollisionCtrl.IsGroundDetected();
+                bool case2 = input.Yinput != 0 && !player.LevelCollisionCtrl.IsGroundDetected();
+                if (case1 || case2)
+                {
+                    stateMachine.ChangeState(player.ladderMoveState);
+                    return true;
+                }
+            }
         }
         // any => Attack
         if(input.Attack || input.isAttackBuffered)
