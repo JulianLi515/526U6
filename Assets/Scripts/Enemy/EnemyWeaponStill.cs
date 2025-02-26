@@ -51,19 +51,19 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
             gameObject.SetActive(true);
         }
 
-        //Active when attack
-        if (isActive == 1)
-        {
-            circle.color = Color.red;
-        }
-        else if (isActive == -1)
-        {
-            circle.color = Color.white;
-        }
-        else
-        {
-            circle.color = Color.green;
-        }
+        ////Active when attack
+        //if (isActive == 1)
+        //{
+        //    circle.color = Color.red;
+        //}
+        //else if (isActive == -1)
+        //{
+        //    circle.color = Color.white;
+        //}
+        //else
+        //{
+        //    circle.color = Color.green;
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D other)

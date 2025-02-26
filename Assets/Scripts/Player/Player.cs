@@ -263,7 +263,7 @@ public class Player : MonoBehaviour
     {
         if (df.isDrop())
         {
-            stateMachine.ChangeState(deflectRewardState, df);
+            stateMachine.ChangeState(grabRewardState, df);
             EventManager.TriggerEvent("PlayerGrabbing", df);
             return;
         }
