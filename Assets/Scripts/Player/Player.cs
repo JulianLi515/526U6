@@ -261,7 +261,12 @@ public class Player : MonoBehaviour
 
     private void OnDamage(Deflectable df)
     {
-
+        if (df.isDrop())
+        {
+            stateMachine.ChangeState(deflectRewardState, df);
+            EventManager.TriggerEvent("PlayerGrabbing", df);
+            return;
+        }
         switch (iState)
         {
             case IState.Grab:

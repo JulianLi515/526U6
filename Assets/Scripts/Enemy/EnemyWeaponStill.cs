@@ -136,4 +136,5 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     public Vector3 getPosition() { return transform.position; }
     public bool canGrab() { return true;  }
     public int getID () { return 0; }
+    public bool isDrop() { return true;}
 }
