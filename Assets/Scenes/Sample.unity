@@ -463,6 +463,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 2814876465594013858, guid: 98989235f1d3e0d408412df85993406a, type: 3}
+      propertyPath: level.m_Bits
+      value: 4104
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814876465594013858, guid: 98989235f1d3e0d408412df85993406a, type: 3}
+      propertyPath: Ground.m_Bits
+      value: 4104
+      objectReference: {fileID: 0}
+    - target: {fileID: 2814876465594013858, guid: 98989235f1d3e0d408412df85993406a, type: 3}
+      propertyPath: MovingPlatform.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3225512665570647777, guid: 98989235f1d3e0d408412df85993406a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.3
