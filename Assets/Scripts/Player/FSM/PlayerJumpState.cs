@@ -30,12 +30,6 @@ public class PlayerJumpState : PlayerState
         player.FlipCtrl.onHorizontalInput();
         player.AirMoveCtrl.OnHorizontalInput(input.Xinput);
 
-        //jump => wallSlide
-        if ((input.Xinput * player.facingDir > 0) && player.LevelCollisionCtrl.IsWallDetected())
-        {
-            stateMachine.ChangeState(player.wallSlideState);
-            return true;
-        }
         //jump => dash
         if((input.Roll || input.isRollBuffered) && player.RollCtrl.rollCoolDownTimer.TimeUp())
         {

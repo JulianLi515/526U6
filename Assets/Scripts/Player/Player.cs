@@ -128,8 +128,6 @@ public class Player : MonoBehaviour
     public PlayerState fallState { get; private set; }
     public PlayerState jumpState { get; private set; }
     public PlayerState rollState { get; private set; }
-    public PlayerState wallSlideState { get; private set; }
-    public PlayerState wallJumpState { get; private set; }
     public PlayerState dashState { get; private set; }
     public PlayerState onDamageState { get; private set; }
     public PlayerState deflectState { get; private set; }
@@ -170,8 +168,6 @@ public class Player : MonoBehaviour
         jumpState = new PlayerJumpState(this, stateMachine, "Jump");
         rollState = new PlayerRollState(this, stateMachine, "Roll");
         dashState = new PlayerDashState(this, stateMachine, "Dash");
-        wallSlideState = new PlayerWallSlideState(this, stateMachine, "WallSlide");
-        wallJumpState = new PlayerWallJumpState(this, stateMachine, "wallJump");
         deflectState = new PlayerDeflectState(this, stateMachine, "Deflect");
         grabState = new PlayerGrabState(this, stateMachine, "Grab");
         deflectRewardState = new PlayerDeflectRewardState(this, stateMachine, "DeflectReward");

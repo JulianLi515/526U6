@@ -32,12 +32,7 @@ public class PlayerDeflectRewardState : PlayerState
         player.FlipCtrl.onHorizontalInput();
         player.AirMoveCtrl.OnHorizontalInput(input.Xinput);
 
-        //deflect jump => wallSlide
-        if ((input.Xinput * player.facingDir > 0) && player.LevelCollisionCtrl.IsWallDetected())
-        {
-            stateMachine.ChangeState(player.wallSlideState);
-            return true;
-        }
+
         //deflect jump => dash
         if ((input.Roll || input.isRollBuffered) && player.RollCtrl.rollCoolDownTimer.TimeUp())
         {

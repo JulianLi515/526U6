@@ -31,12 +31,7 @@ public class PlayerDashState : PlayerState
         }
 
         player.RollCtrl.Dashing();
-        // dash => wallSlide
-        if ((input.Xinput * player.facingDir > 0) && player.LevelCollisionCtrl.IsWallDetected())
-        {
-            stateMachine.ChangeState(player.wallSlideState);
-            return true;
-        }
+
         // dash => fall
         if (player.RollCtrl.rollDurationTimer.TimeUp())
         {

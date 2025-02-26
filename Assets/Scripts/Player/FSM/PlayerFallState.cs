@@ -27,12 +27,7 @@ public class PlayerFallState : PlayerState
 
         player.FlipCtrl.onHorizontalInput();
         player.AirMoveCtrl.OnHorizontalInput(input.Xinput);
-        //fall => wallslide
-        if ((input.Xinput * player.facingDir > 0) && player.LevelCollisionCtrl.IsWallDetected())
-        {
-            stateMachine.ChangeState(player.wallSlideState);
-            return true;
-        }
+
         //fall => dash
         if ((input.Roll || input.isRollBuffered) && player.RollCtrl.rollCoolDownTimer.TimeUp())
         {

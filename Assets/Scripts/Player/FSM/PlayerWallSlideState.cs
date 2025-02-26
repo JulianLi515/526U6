@@ -28,12 +28,7 @@ public class PlayerWallSlideState : PlayerState
 
         player.WallMovementCtrl.Slide();
 
-        // wallslide => wallJump
-        if (input.Jump || input.isJumpBuffered)
-        {
-            stateMachine.ChangeState(player.wallJumpState);
-            return true;
-        }
+
         // wallslide => fall
         if ( (!player.LevelCollisionCtrl.IsWallDetected()) || player.facingDir * input.Xinput <= 0)
         {
