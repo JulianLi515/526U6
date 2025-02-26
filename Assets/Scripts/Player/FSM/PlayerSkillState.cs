@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class PlayerGrabRewardState : PlayerState
+public class PlayerSkillState : PlayerState
 {
-    public PlayerGrabRewardState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
+    public PlayerSkillState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
     {
     }
 
     public override void Enter()
     {
         base.Enter();
-        player.WeaponCtrl.SetCurrentWP(stateMachine.trigger.getID());
+        input.isSkillBuffered = false;
+        player.WeaponCtrl.Skill();
     }
 
     public override void Exit()
@@ -24,8 +25,9 @@ public class PlayerGrabRewardState : PlayerState
 
     public override bool Update()
     {
-        if(base.Update()){
-            return true;   
+        if (base.Update())
+        {
+            return true;
         }
         stateMachine.ChangeState(player.idleState);
         return true;

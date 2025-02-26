@@ -28,6 +28,10 @@ public class PlayerInput : MonoBehaviour
     public bool isGrabBuffered { get; set; }
     public float grabBufferTimeWindow;
     WaitForSeconds grabBufferTime;
+    public bool Skill => inputActions.GamePlay.Skill.WasPressedThisFrame();
+    public bool isSkillBuffered { get; set; }
+    public float skillbBufferTimeWindow;
+    WaitForSeconds skillBufferTime;
     public Vector2 AxesInput => inputActions.GamePlay.Move.ReadValue<Vector2>();
     public float Xinput => AxesInput.x;
     public float Yinput => AxesInput.y;
@@ -84,7 +88,11 @@ public class PlayerInput : MonoBehaviour
         StopCoroutine(nameof(GrabBufferCoroutine));
         StartCoroutine(nameof(GrabBufferCoroutine));
     }
-
+    public void SkillGrabBufferTimer()
+    {
+        StopCoroutine(nameof(SkillBufferCoroutine));
+        StartCoroutine(nameof(SkillBufferCoroutine));
+    }
     IEnumerator JumpBufferCoroutine()
     {
         isJumpBuffered = true;
@@ -115,6 +123,12 @@ public class PlayerInput : MonoBehaviour
         isGrabBuffered = true;
         yield return grabBufferTime;
         isGrabBuffered = false;
+    }
+    IEnumerator SkillBufferCoroutine()
+    {
+        isSkillBuffered = true;
+        yield return grabBufferTime;
+        isSkillBuffered = false;
     }
 
     IEnumerator LoseControl(float duration)

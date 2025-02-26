@@ -5,44 +5,42 @@ using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using UnityEngine.Windows;
 
-public class PlayerStateMachine
+public class LanceStateMachine
 {
-    public PlayerState currentState { get; private set; }
-    public PlayerState previousState { get; private set; }
+    public LanceState currentState { get; private set; }
+    public LanceState previousState { get; private set; }
 
-    public Player player;
-    public PlayerInput input;
+    public Lance lance;
+
     public bool stateLocked;
 
 
-    public PlayerStateMachine(Player player)
+    public LanceStateMachine(Lance lance)
     {
-        this.player = player;
+        this.lance = lance;
     }
 
     public Deflectable trigger { get; set; }
 
-    public void Initialize(PlayerState _startState)
+    public void Initialize(LanceState _startState)
     {
         currentState = _startState;
         currentState.Enter();
         stateLocked = false;
     }
 
-    public void ChangeState(PlayerState _newState)
+    public void ChangeState(LanceState _newState)
     {
         previousState = currentState;
         currentState.Exit();
-        trigger = null;
         currentState = _newState;
         currentState.Enter();
     }
-    public void ChangeState(PlayerState _newState, Deflectable _trigger)
+    public void ChangeState(LanceState _newState, Deflectable _trigger)
     {
         previousState = currentState;
         currentState.Exit();
         currentState = _newState;
-        trigger = _trigger;
         currentState.Enter();
     }
 

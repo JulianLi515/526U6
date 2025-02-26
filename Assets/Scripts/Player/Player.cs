@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     public int frameRate = 60;
     public float gravityScale;
     public IState iState;
+    public bool ladderCheck;
 
     [Header("LevelCollision")]
     public Transform groundCheckLeft;
@@ -68,7 +69,6 @@ public class Player : MonoBehaviour
     public Timer grabTimer;
     public float grabHitboxOffsetX;
     public float grabHitboxOffsetY;
-
     [Header("Roll")]
     public float rollSpeed;
     public float rollCoolDown;
@@ -88,7 +88,12 @@ public class Player : MonoBehaviour
     public float KnockBackDuration = 0.2f;
     public Timer KnockBackTimer;
 
-    private bool ladderCheck;
+    [Header("Weapon")]
+    public PlayerWeapon weapon1;
+    public PlayerWeapon weapon2;
+    public PlayerWeapon currentWeapon;
+    public WeaponsDiction weaponDictionary;
+
     [Header("Animation")]
     [SerializeField] private string animState;
 
@@ -113,6 +118,7 @@ public class Player : MonoBehaviour
     public GrabController GrabCtrl { get; private set; }
     public KnockPlayerBackController KnockBackCtrl { get; private set; }
     public OnFlyableController OnFlyableCtrl { get; private set; }
+    public WeaponController WeaponCtrl { get; private set; }
     #endregion
 
     #region States
@@ -132,6 +138,7 @@ public class Player : MonoBehaviour
     public PlayerState grabRewardState { get; private set; }
     public PlayerState damagePenaltyState { get; private set; }
     public PlayerState ladderMoveState { get; private set; }
+    public PlayerState skillState { get; private set; }
     #endregion
 
     private void Awake()
@@ -153,9 +160,10 @@ public class Player : MonoBehaviour
         GrabCtrl = new GrabController(this);
         KnockBackCtrl = new KnockPlayerBackController(this);
         OnFlyableCtrl = new OnFlyableController(this);
+        WeaponCtrl = new WeaponController(this);
 
 
-        stateMachine = new PlayerStateMachine();
+        stateMachine = new PlayerStateMachine(this);
         idleState = new PlayerIdleState(this, stateMachine, "Idle");
         moveState = new PlayerMoveState(this, stateMachine, "Move");
         fallState = new PlayerFallState(this, stateMachine, "Fall");
@@ -170,6 +178,7 @@ public class Player : MonoBehaviour
         grabRewardState = new PlayerGrabRewardState(this, stateMachine, "GrabReward");
         damagePenaltyState = new PlayerDamagedPenalyState(this, stateMachine, "DamagePenalty");
         ladderMoveState = new PlayerLadderMoveState(this, stateMachine, "LadderMove");
+        skillState = new PlayerSkillState(this, stateMachine, "Skill");
 
     }
 
@@ -181,6 +190,7 @@ public class Player : MonoBehaviour
         //assign component
         rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = gravityScale;
+        weaponDictionary = GetComponentInChildren<WeaponsDiction>();
 
         input.EnableGamePlayInputs();
         stateMachine.Initialize(fallState);
@@ -224,7 +234,7 @@ public class Player : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(200, 200, 200, 200), "playerState: " + stateMachine.currentState.animBoolName);
-        GUI.Label(new Rect(200, 220, 200, 200), "deflect timer: " + DeflectCtrl.timer.timer);
+        GUI.Label(new Rect(200, 220, 200, 200), "LadderDected: " + ladderCheck);
     }
 
     private void PlayerColorStateIndicator()

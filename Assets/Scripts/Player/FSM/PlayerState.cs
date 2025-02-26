@@ -35,20 +35,27 @@ public class PlayerState
     public virtual bool Update()
     {
 
+        //any => deflect
         if (input.Deflect || input.isDeflectBuffered)
         {
             stateMachine.ChangeState(player.deflectState);
             return true;
         }
-
+        // any=> Grab
         if (input.Grab || input.isGrabBuffered)
         {
             stateMachine.ChangeState(player.grabState);
             return true;
         }
+        // any => LadderMove
         if (player.LadderInteractionCheckOnCurrentState())
         {
             return true;
+        }
+        // any => Skill
+        if(input.Skill || input.isSkillBuffered)
+        {
+            stateMachine.ChangeState(player.skillState);
         }
         return false;
     }

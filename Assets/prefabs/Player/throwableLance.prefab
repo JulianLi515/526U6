@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 1137687594958249864}
   - component: {fileID: 8999599304965456753}
   m_Layer: 3
-  m_Name: Spear
+  m_Name: throwableLance
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

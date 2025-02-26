@@ -9,6 +9,7 @@ TagManager:
   - Spear
   - PlayerInteractBox
   - Ladder
+  - Skin
   layers:
   - Default
   - TransparentFX

@@ -31,12 +31,12 @@ public class PlayerDamagedPenalyState : PlayerState
         {
             return true;
         }
-        //Call only one frame, Exit after force Applied
         player.KnockBackCtrl.ApplyKnockback();
 
         if (player.KnockBackCtrl.timer.TimeUp())
         {
             stateMachine.ChangeState(player.idleState);
+            return true;
         }
         return false;
     }

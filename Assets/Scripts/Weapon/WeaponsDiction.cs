@@ -1,17 +1,33 @@
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 
 public class WeaponsDiction:MonoBehaviour
 {
-    public GameObject lancePrefab;
+    private Dictionary<int, PlayerWeapon> weaponDictionary = new Dictionary<int, PlayerWeapon>();
+    public Player player;
 
-    public GameObject getLancePrefab()
+    private void Awake()
     {
-        if (lancePrefab == null)
+        // Automatically gather all Playerweapon components from children
+        PlayerWeapon[] weapons = GetComponentsInChildren<PlayerWeapon>(true);
+        player = GetComponentInParent<Player>();
+
+        foreach (PlayerWeapon weapon in weapons)
         {
-            Debug.LogError("Lance prefab not set");
+            weaponDictionary[weapon.WeaponID] = weapon;
+            weapon.DeactivateWeapon(); // Ensure all weapons start deactivated
+            weapon.player = player; // Make player visible to all weapons
         }
-        return lancePrefab;
+    }
+    public PlayerWeapon SearchWeapon(int id)
+    {
+        if (weaponDictionary.TryGetValue(id, out PlayerWeapon weapon))
+        {
+            return weapon;
+        }
+        Debug.LogWarning($"Weapon with ID {id} not found!");
+        return null;
     }
 }

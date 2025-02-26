@@ -146,6 +146,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Skill"",
+                    ""type"": ""Button"",
+                    ""id"": ""51c55b6f-5507-4885-a44a-7663b6af3d21"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""TestKey1"",
                     ""type"": ""Button"",
                     ""id"": ""f9a49b2a-894e-4d78-ac55-cd9d5f9abbd3"",
@@ -331,6 +340,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Grab"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62c5d2f9-5dea-45e4-a93a-0f858c51cdb3"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Skill"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -345,6 +365,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
         m_GamePlay_Roll = m_GamePlay.FindAction("Roll", throwIfNotFound: true);
         m_GamePlay_Grab = m_GamePlay.FindAction("Grab", throwIfNotFound: true);
+        m_GamePlay_Skill = m_GamePlay.FindAction("Skill", throwIfNotFound: true);
         m_GamePlay_TestKey1 = m_GamePlay.FindAction("TestKey1", throwIfNotFound: true);
     }
 
@@ -432,6 +453,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_GamePlay_Attack;
     private readonly InputAction m_GamePlay_Roll;
     private readonly InputAction m_GamePlay_Grab;
+    private readonly InputAction m_GamePlay_Skill;
     private readonly InputAction m_GamePlay_TestKey1;
     /// <summary>
     /// Provides access to input actions defined in input action map "GamePlay".
@@ -468,6 +490,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "GamePlay/Grab".
         /// </summary>
         public InputAction @Grab => m_Wrapper.m_GamePlay_Grab;
+        /// <summary>
+        /// Provides access to the underlying input action "GamePlay/Skill".
+        /// </summary>
+        public InputAction @Skill => m_Wrapper.m_GamePlay_Skill;
         /// <summary>
         /// Provides access to the underlying input action "GamePlay/TestKey1".
         /// </summary>
@@ -516,6 +542,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Grab.started += instance.OnGrab;
             @Grab.performed += instance.OnGrab;
             @Grab.canceled += instance.OnGrab;
+            @Skill.started += instance.OnSkill;
+            @Skill.performed += instance.OnSkill;
+            @Skill.canceled += instance.OnSkill;
             @TestKey1.started += instance.OnTestKey1;
             @TestKey1.performed += instance.OnTestKey1;
             @TestKey1.canceled += instance.OnTestKey1;
@@ -548,6 +577,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Grab.started -= instance.OnGrab;
             @Grab.performed -= instance.OnGrab;
             @Grab.canceled -= instance.OnGrab;
+            @Skill.started -= instance.OnSkill;
+            @Skill.performed -= instance.OnSkill;
+            @Skill.canceled -= instance.OnSkill;
             @TestKey1.started -= instance.OnTestKey1;
             @TestKey1.performed -= instance.OnTestKey1;
             @TestKey1.canceled -= instance.OnTestKey1;
@@ -633,6 +665,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGrab(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Skill" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSkill(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "TestKey1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

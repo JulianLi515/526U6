@@ -3,8 +3,8 @@ using UnityEngine;
 public class PlayerWeapon : MonoBehaviour
 {
 
-    GameObject prefab;
-    Player player;
+    public Player player;
+    public int WeaponID;
 
     void Start()
     {
@@ -17,5 +17,16 @@ public class PlayerWeapon : MonoBehaviour
         
     }
     public virtual void grabSkill(){ }
-    public virtual void attck() { }
+    public virtual void attack() { }
+    public virtual void skill() { }
+
+    public virtual void ActivateWeapon()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public virtual void DeactivateWeapon()
+    {
+        gameObject.SetActive(false);
+    }
 }

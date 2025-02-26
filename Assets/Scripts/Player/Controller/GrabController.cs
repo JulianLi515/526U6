@@ -39,8 +39,4 @@ public class GrabController
         grabPosition = df.getPosition();
     }
 
-   
-    
-    
-
 }
