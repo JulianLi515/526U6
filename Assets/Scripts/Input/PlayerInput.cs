@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -35,6 +36,12 @@ public class PlayerInput : MonoBehaviour
     public Vector2 AxesInput => inputActions.GamePlay.Move.ReadValue<Vector2>();
     public float Xinput => AxesInput.x;
     public float Yinput => AxesInput.y;
+    public bool isUpBuffered { get; set; }
+    public float upBufferTimeWindow;
+    WaitForSeconds upBufferTime;
+    public bool isDownBuffered { get; set; }
+    public float downBufferTimeWindow;
+    WaitForSeconds downBufferTime;
 
     void Awake()
     {
@@ -45,6 +52,8 @@ public class PlayerInput : MonoBehaviour
             jumpBufferTime = new WaitForSeconds(jumpBufferTimeWindow);
             rollBufferTime = new WaitForSeconds(rollBufferTimeWindow);
             attackBufferTime = new WaitForSeconds(attackBufferTimeWindow);
+            upBufferTime = new WaitForSeconds(upBufferTimeWindow);
+            downBufferTime = new WaitForSeconds(downBufferTimeWindow);
         }
 
 
@@ -92,6 +101,18 @@ public class PlayerInput : MonoBehaviour
     {
         StopCoroutine(nameof(SkillBufferCoroutine));
         StartCoroutine(nameof(SkillBufferCoroutine));
+    }
+
+    public void SetUpBufferTimer()
+    {
+        StopCoroutine(nameof(UpBufferCoroutine));
+        StartCoroutine(nameof(UpBufferCoroutine));
+    }
+
+    public void SetDownBufferTimer()
+    {
+        StopCoroutine(nameof(DownBufferCoroutine));
+        StartCoroutine(nameof(DownBufferCoroutine));
     }
     IEnumerator JumpBufferCoroutine()
     {
@@ -142,4 +163,20 @@ public class PlayerInput : MonoBehaviour
         // Re-enable gameplay inputs once the new scene is fully loaded
         EnableGamePlayInputs();
     }
+
+    IEnumerator UpBufferCoroutine()
+    {
+        isUpBuffered = true;
+        yield return upBufferTime;
+        isUpBuffered = false;
+    }
+
+    IEnumerator DownBufferCoroutine()
+    {
+        isDownBuffered = true;
+        yield return downBufferTime;
+        isDownBuffered = false;
+    }
+
+
 }
