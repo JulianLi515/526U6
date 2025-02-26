@@ -25,13 +25,13 @@ public class PlayerIdleState : PlayerState
         {
             return true;
         }
+        player.FlipCtrl.onHorizontalInput();
+
         // stand on spear
         if (player.OnFlyableCtrl.OnFlyingPlatform)
         {
             player.OnFlyableCtrl.Still();
         }
-
-        player.FlipCtrl.onHorizontalInput();
 
         // idle => Roll
         if ((input.Roll || input.isRollBuffered) && player.RollCtrl.rollCoolDownTimer.TimeUp())

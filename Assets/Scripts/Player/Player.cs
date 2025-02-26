@@ -210,7 +210,7 @@ public class Player : MonoBehaviour
         //Timer count down
         TimerCountDownCtrl.Update();
 
-        // state update
+
         stateMachine.currentState.Update();
 
         //Debug
@@ -223,6 +223,8 @@ public class Player : MonoBehaviour
     private void LateUpdate()
     {
         stateMachine.currentState.LateUpdate();
+        
+
     }
 
     private void OnDestroy()
@@ -332,4 +334,6 @@ public class Player : MonoBehaviour
         }
         return false;
     }
+
+
 }

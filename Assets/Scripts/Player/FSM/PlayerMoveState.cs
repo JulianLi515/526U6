@@ -26,6 +26,7 @@ public class PlayerMoveState : PlayerState
         }
 
         player.GroundMoveCtrl.onHorizontalInput(input.Xinput);
+        player.FlipCtrl.onHorizontalInput();
 
         // move => Roll
         if ((input.Roll || input.isRollBuffered) && player.RollCtrl.rollCoolDownTimer.TimeUp())
