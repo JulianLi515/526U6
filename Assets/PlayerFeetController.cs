@@ -23,4 +23,20 @@ public class PlayerFeetController : MonoBehaviour
     {
         player.transform.parent = null;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("MovingPlatform"))
+        {
+            SetPlayerParent(collision.transform);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("MovingPlatform"))
+        {
+            ResetPlayerParent();
+        }
+    }
 }

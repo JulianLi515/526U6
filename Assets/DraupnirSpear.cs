@@ -60,23 +60,10 @@ public class DraupnirSpear : MonoBehaviour
             transform.parent = collision.transform;
             //gameObject.layer = LayerMask.NameToLayer("Ground");
         }
-        if (collision.collider.CompareTag("PlayerFeet"))
-        {
-            Debug.Log("Playerddddddddddddddd");
-            collision.gameObject.GetComponent<PlayerFeetController>().SetPlayerParent(transform);
-        }
 
     }
 
     
-
-    private void OnCollisionExit2D(UnityEngine.Collision2D collision)
-    {
-        if (collision.collider.CompareTag("PlayerFeet"))
-        {
-            collision.gameObject.GetComponent<PlayerFeetController>().ResetPlayerParent();
-        }
-    }
 
     IEnumerator DestroySpearCoroutine()
     {
