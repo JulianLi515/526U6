@@ -33,7 +33,7 @@ public class DraupnirSpear : MonoBehaviour
         switch (state)
         {
             case SpearState.InAir:
-                rb.linearVelocity = Vector2.right*moveSpeed;
+                rb.linearVelocity = transform.right*moveSpeed;
 
                 break;
             case SpearState.OnWall:
