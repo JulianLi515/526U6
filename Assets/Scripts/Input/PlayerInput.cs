@@ -31,7 +31,7 @@ public class PlayerInput : MonoBehaviour
     WaitForSeconds grabBufferTime;
     public bool Skill => inputActions.GamePlay.Skill.WasPressedThisFrame();
     public bool isSkillBuffered { get; set; }
-    public float skillbBufferTimeWindow;
+    public float skillBufferTimeWindow;
     WaitForSeconds skillBufferTime;
     public Vector2 AxesInput => inputActions.GamePlay.Move.ReadValue<Vector2>();
     public float Xinput => AxesInput.x;
