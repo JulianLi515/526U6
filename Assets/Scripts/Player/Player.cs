@@ -232,7 +232,6 @@ public class Player : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(200, 200, 200, 200), "playerState: " + stateMachine.currentState.animBoolName);
-        GUI.Label(new Rect(200, 220, 200, 200), "LadderDected: " + ladderCheck);
     }
 
     private void PlayerColorStateIndicator()
