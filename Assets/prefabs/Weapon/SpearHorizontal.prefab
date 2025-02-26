@@ -298,7 +298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   moveSpeed: 30
-  liveTime: 15
+  liveTime: 2
 --- !u!251 &8999599304965456753
 PlatformEffector2D:
   m_ObjectHideFlags: 0

@@ -52,6 +52,7 @@ public class DraupnirSpear : MonoBehaviour
         if (collision.collider.CompareTag("Wall"))
         {
             state = SpearState.OnWall;
+            //collision.
             rb.linearVelocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             //rb.bodyType = RigidbodyType2D.Dynamic;
