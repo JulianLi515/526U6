@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 963222028384253416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8, y: 0, z: 0.62281775}
-  m_LocalScale: {x: 17, y: 1, z: 1}
+  m_LocalPosition: {x: 6.016, y: -0.255, z: 0.62281775}
+  m_LocalScale: {x: 12.830674, y: 0.48999998, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3545660684388717251}
@@ -113,8 +113,8 @@ Transform:
   m_GameObject: {fileID: 7082908713036057855}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.70710677, w: 0.7071068}
-  m_LocalPosition: {x: 18.020664, y: 0, z: 0.62281775}
-  m_LocalScale: {x: 3, y: 8.000299, z: 1}
+  m_LocalPosition: {x: 12.64, y: -0.26, z: 0.62281775}
+  m_LocalScale: {x: 2.0169108, y: 5.70787, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3545660684388717251}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 7566865759813482360}
   - component: {fileID: 1137687594958249864}
   - component: {fileID: 8999599304965456753}
-  m_Layer: 3
+  m_Layer: 12
   m_Name: SpearHorizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -203,7 +203,7 @@ Transform:
   m_GameObject: {fileID: 8414946441756651760}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.085517, y: -29.623716, z: -0.62281775}
+  m_LocalPosition: {x: -1.86, y: -29.47, z: -0.62281775}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -272,7 +272,7 @@ BoxCollider2D:
   m_UsedByEffector: 1
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 10, y: 0}
+  m_Offset: {x: 7.1599593, y: -0.2868681}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -282,7 +282,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 21, y: 1}
+  m_Size: {x: 13.283229, y: 1.0107975}
   m_EdgeRadius: 0
 --- !u!114 &1137687594958249864
 MonoBehaviour:

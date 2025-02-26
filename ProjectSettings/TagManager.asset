@@ -9,6 +9,7 @@ TagManager:
   - Skin
   - Ground
   - PlayerInteractBox
+  - PlayerFeet
   layers:
   - Default
   - TransparentFX

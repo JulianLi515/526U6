@@ -9,6 +9,7 @@ public class Lance : PlayerWeapon
     public GameObject skin;
     public GameObject throwableLancePrefabHorizontal;
     public GameObject throwableLancePrefabVertical;
+    public LayerMask ground;
 
 
     [Header("Initialization")]
