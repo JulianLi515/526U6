@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5097930772875208687}
   - component: {fileID: 5797452472091937398}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Triangle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4887390378564961878}
   - component: {fileID: 370328768616013762}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 3579340773568114309}
   - component: {fileID: 4272341666048980299}
   - component: {fileID: 5798382124477926431}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: SpearVertical
   m_TagString: Ladder
   m_Icon: {fileID: 0}

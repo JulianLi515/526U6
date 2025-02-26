@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210643135265967095}
   - component: {fileID: 4480670903701699498}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5998786692913988944}
   - component: {fileID: 7228437888648779511}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 7566865759813482360}
   - component: {fileID: 1137687594958249864}
   - component: {fileID: 8999599304965456753}
-  m_Layer: 12
+  m_Layer: 3
   m_Name: SpearHorizontal
   m_TagString: MovingPlatform
   m_Icon: {fileID: 0}
