@@ -15,13 +15,13 @@ public class WeaponController
     {
 
     }
-    public void Attack()
+    public void Attack(AttackInfo ai)
+    {
+        player.currentWeapon.attack(ai);
+    }
+    public void Skill(AttackInfo ai)
     {
         
-    }
-    public void Skill()
-    {
-        player.currentWeapon.attack();
     }
     public void switchWP1()
     {

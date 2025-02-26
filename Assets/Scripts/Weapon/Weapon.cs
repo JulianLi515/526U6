@@ -17,8 +17,8 @@ public class PlayerWeapon : MonoBehaviour
         
     }
     public virtual void grabSkill(){ }
-    public virtual void attack() { }
-    public virtual void skill() { }
+    public virtual void attack(AttackInfo ai) { }
+    public virtual void skill(AttackInfo ai) { }
 
     public virtual void ActivateWeapon()
     {

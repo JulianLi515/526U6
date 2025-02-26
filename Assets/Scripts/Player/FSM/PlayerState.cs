@@ -52,10 +52,11 @@ public class PlayerState
         {
             return true;
         }
-        // any => Skill
-        if(input.Skill || input.isSkillBuffered)
+        // any => Attack
+        if(input.Attack || input.isAttackBuffered)
         {
-            stateMachine.ChangeState(player.skillState);
+            stateMachine.ChangeState(player.attackState);
+            return true;
         }
         return false;
     }

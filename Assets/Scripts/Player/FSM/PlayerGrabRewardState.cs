@@ -29,6 +29,6 @@ public class PlayerGrabRewardState : PlayerState
         }
         stateMachine.ChangeState(player.idleState);
         return true;
-        return false;
+        //return false;
     }
 }

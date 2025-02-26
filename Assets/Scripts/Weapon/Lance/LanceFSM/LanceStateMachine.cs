@@ -12,6 +12,8 @@ public class LanceStateMachine
 
     public Lance lance;
 
+    public AttackInfo attackInfo;
+
     public bool stateLocked;
 
 
@@ -27,19 +29,23 @@ public class LanceStateMachine
         currentState = _startState;
         currentState.Enter();
         stateLocked = false;
+        attackInfo = null;
     }
 
     public void ChangeState(LanceState _newState)
     {
         previousState = currentState;
         currentState.Exit();
+        attackInfo = null;
         currentState = _newState;
         currentState.Enter();
+        
     }
-    public void ChangeState(LanceState _newState, Deflectable _trigger)
+    public void ChangeState(LanceState _newState, AttackInfo ai)
     {
         previousState = currentState;
         currentState.Exit();
+        attackInfo = ai;
         currentState = _newState;
         currentState.Enter();
     }

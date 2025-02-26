@@ -138,7 +138,7 @@ public class Player : MonoBehaviour
     public PlayerState grabRewardState { get; private set; }
     public PlayerState damagePenaltyState { get; private set; }
     public PlayerState ladderMoveState { get; private set; }
-    public PlayerState skillState { get; private set; }
+    public PlayerState attackState { get; private set; }
     #endregion
 
     private void Awake()
@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
         grabRewardState = new PlayerGrabRewardState(this, stateMachine, "GrabReward");
         damagePenaltyState = new PlayerDamagedPenalyState(this, stateMachine, "DamagePenalty");
         ladderMoveState = new PlayerLadderMoveState(this, stateMachine, "LadderMove");
-        skillState = new PlayerSkillState(this, stateMachine, "Skill");
+        attackState = new PlayerAttackState(this, stateMachine, "Skill");
 
     }
 

@@ -137,7 +137,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &200423946
 Transform:
   m_ObjectHideFlags: 0
@@ -168,12 +168,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   WeaponID: 0
-  spwanPoint: {x: 4, y: 6, z: 0}
   rb: {fileID: 0}
   col: {fileID: 0}
   skin: {fileID: 1630280855}
-  throwableLancePrefab: {fileID: 8414946441756651760, guid: 558c247dede70244187a2ccb03dd8a2b, type: 3}
-  state: 0
+  throwableLancePrefabHorizontal: {fileID: 8414946441756651760, guid: 558c247dede70244187a2ccb03dd8a2b, type: 3}
+  throwableLancePrefabVertical: {fileID: 6152305458031132993, guid: 9d640b494e1e6964ea553d2cbffa4841, type: 3}
+  spwanPoint: {x: 4, y: 6, z: 0}
+  timer: 0
+  isDisappear: 0
 --- !u!60 &200423948
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -679,6 +681,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1323316453271247037, guid: 98989235f1d3e0d408412df85993406a, type: 3}
+      propertyPath: grabBufferTimeWindow
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2814876465594013858, guid: 98989235f1d3e0d408412df85993406a, type: 3}
       propertyPath: gravityScale
       value: 20

@@ -7,8 +7,9 @@ public class Lance : PlayerWeapon
     public Rigidbody2D rb;
     public Collider2D col;
     public GameObject skin;
-    public GameObject throwableLancePrefab;
-    
+    public GameObject throwableLancePrefabHorizontal;
+    public GameObject throwableLancePrefabVertical;
+
 
     [Header("Initialization")]
     public Vector3 spwanPoint;
@@ -23,6 +24,7 @@ public class Lance : PlayerWeapon
     public LanceStateMachine stateMachine;
     public LanceIdleState idleState;
     public LanceAttackState attackState;
+    public LanceDisappearState disappearState;
     #endregion
 
     private void Awake()
@@ -40,6 +42,7 @@ public class Lance : PlayerWeapon
         stateMachine = new LanceStateMachine(this);
         idleState = new LanceIdleState(stateMachine,this);
         attackState = new LanceAttackState(stateMachine, this);
+        disappearState = new LanceDisappearState(stateMachine, this);
 
         stateMachine.Initialize(idleState);
 
@@ -66,19 +69,22 @@ public class Lance : PlayerWeapon
         timer = Mathf.Max(0,timer-Time.deltaTime);
     }
 
-    public override void attack()
+    public override void attack(AttackInfo ai)
     {
-        base.attack();
-        stateMachine.ChangeState(attackState);
+        base.attack(ai);
+        if (!isDisappear)
+        {
+            stateMachine.ChangeState(attackState,ai);
+        }
     }
 
     public override void grabSkill()
     {
         base.grabSkill();
     }
-    public override void skill()
+    public override void skill(AttackInfo ai)
     {
-        base.skill();
+        base.skill(ai);
     }
 
     public override void ActivateWeapon()
