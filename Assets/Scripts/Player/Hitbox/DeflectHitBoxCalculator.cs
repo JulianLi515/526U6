@@ -42,9 +42,9 @@ public class DeflectHitBoxCalculator : MonoBehaviour
             Debug.Log(collider.gameObject.name);
             if (collider.gameObject.CompareTag("EnemyAttackBox"))
             {
-                Debug.Log("DeflectPPPPPPPPPPPPP");
                 player.trigger = collider.gameObject;
                 player.battleInfo = Player.BattleInfo.Deflect;
+                player.trigger.SetActive(false);
                 break;
             }
         }

@@ -42,6 +42,7 @@ public class GrabHitBoxCalculator : MonoBehaviour
                 //TODO: If grab two item in the same frame
                 player.trigger = collider.gameObject;
                 player.battleInfo = Player.BattleInfo.Grab;
+                player.trigger.SetActive(false);
                 break;
             }
         }
