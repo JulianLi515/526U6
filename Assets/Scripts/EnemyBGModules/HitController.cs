@@ -10,6 +10,7 @@ public class HitController : MonoBehaviour,Deflectable
     private int hitResult;
     private Rigidbody2D rb;
     private Rigidbody2D rbParent;
+    private bool isGrabbed;
 
     public bool grabbable { get; set; }
     public int id => 0;
@@ -170,6 +171,7 @@ public class HitController : MonoBehaviour,Deflectable
         {
             if (grabbable)
             {
+                isGrabbed = true;
                 UnityEngine.Debug.Log($"{name}'s attack is Grabbed by player, Destroy");
             }
         }
@@ -192,6 +194,9 @@ public class HitController : MonoBehaviour,Deflectable
     public bool isDrop()
     {
         return false;
+    }
+    public bool IsGrabbed() {
+        return isGrabbed;
     }
 
     
