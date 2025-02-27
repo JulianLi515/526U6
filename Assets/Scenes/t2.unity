@@ -381,7 +381,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 1.3645353, y: 0.15445638}
+  m_Offset: {x: 0.9606289, y: 0.15445638}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -391,7 +391,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 4.8720474, y: 2.6681309}
+  m_Size: {x: 4.064235, y: 2.6681309}
   m_EdgeRadius: 0
 --- !u!50 &753897727
 Rigidbody2D:
@@ -417,7 +417,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &753897728
@@ -432,6 +432,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f04752fd3c421f4d810c497866125c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1001 &803653615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -829,6 +832,10 @@ PrefabInstance:
     - target: {fileID: 6154383912242399294, guid: 98989235f1d3e0d408412df85993406a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6154383912242399294, guid: 98989235f1d3e0d408412df85993406a, type: 3}
+      propertyPath: m_TagString
+      value: PlayerBodyBox
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

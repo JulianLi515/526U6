@@ -25,17 +25,23 @@ public partial class AttackCheckAction : Action
         if (CheckPoint1.Value)
         {
             
-            return Status.Failure;
+            return Status.Success;
         }
+        
+        
         switch (Weaponcontroller.Value.GetResult())
         {
             case 0:
-                return Status.Success;
-            case 1:
                 return Status.Running;
+            case 1:
+                //Weaponcontroller.Value.gameObject.SetActive(false);
+                Debug.Log("Hit");
+                return Status.Success;
             case 2:
+                Debug.Log("Parry");
+                Weaponcontroller.Value.gameObject.SetActive(false);
                 HitCounter.Value++;
-                return Status.Failure;
+                return Status.Success;
         }
         return Status.Success;
     }
