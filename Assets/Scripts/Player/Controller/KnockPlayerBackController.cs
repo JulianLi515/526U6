@@ -29,6 +29,6 @@ public class KnockPlayerBackController
         //player.AirMoveCtrl.Freeze();
         //player.rb.AddForce(knockbackForce, ForceMode2D.Impulse);
 
-        player.rb.linearVelocity = new Vector2(direction.x * player.knockbackForceMultiplier, (direction.y+1f)*player.knockbackForceMultiplier);
+        player.rb.linearVelocity = new Vector2(direction.x * player.knockbackForceMultiplier, (direction.y+0.5f)*player.knockbackForceMultiplier);
     }
 }

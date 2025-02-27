@@ -86,9 +86,9 @@ public class Player : MonoBehaviour
     public float rollInvincibleDuration;
 
 
-    [Header("Invincible")]
-    public Timer Invincibletimer;
+    [Header("HitBox")]
     public GameObject InvincibleBox;
+    public GameObject HitBox;
 
     [Header("DamagedPenalty")]
     public float knockbackThreshold;
@@ -242,6 +242,7 @@ public class Player : MonoBehaviour
     void OnGUI()
     {
         GUI.Label(new Rect(200, 200, 200, 200), "playerState: " + stateMachine.currentState.animBoolName);
+        GUI.Label(new Rect(200, 220, 200, 200), "battleInfo: " + battleInfo);
     }
 
     private void OnDrawGizmos()
@@ -273,14 +274,18 @@ public class Player : MonoBehaviour
 
     public void GoInvincible(float Duration)
     {
+        StopCoroutine(InvincibleCoroutine(Duration));
         StartCoroutine(InvincibleCoroutine(Duration));
     }
 
     IEnumerator InvincibleCoroutine(float Duration)
     {
         InvincibleBox.SetActive(true);
+        HitBox.SetActive(false);
         yield return new WaitForSeconds(Duration);
         InvincibleBox.SetActive(false);
+        HitBox.SetActive(true);
+        battleInfo = BattleInfo.Peace;
     }
 
 }

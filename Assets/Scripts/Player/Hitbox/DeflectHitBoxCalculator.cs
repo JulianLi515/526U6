@@ -37,10 +37,10 @@ public class DeflectHitBoxCalculator : MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            if (collider.gameObject.CompareTag("EnemyHitBox"))
+            if (collider.gameObject.CompareTag("EnemyAttackBox"))
             {
-                player.battleInfo = Player.BattleInfo.Deflect;
                 player.trigger = collider.gameObject;
+                player.battleInfo = Player.BattleInfo.Deflect;
                 break;
             }
         }

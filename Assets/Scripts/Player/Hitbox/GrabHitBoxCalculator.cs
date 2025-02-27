@@ -40,8 +40,8 @@ public class GrabHitBoxCalculator : MonoBehaviour
             if (collider.gameObject.CompareTag("EnemyGrabbedBox"))
             {
                 //TODO: If grab two item in the same frame
-                player.battleInfo = Player.BattleInfo.Grab;
                 player.trigger = collider.gameObject;
+                player.battleInfo = Player.BattleInfo.Grab;
                 break;
             }
         }

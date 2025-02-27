@@ -27,6 +27,7 @@ public class  HitBoxCalculator: MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
     }
     void LateUpdate()
     {
@@ -42,8 +43,12 @@ public class  HitBoxCalculator: MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            
-            break;
+            if (collider.gameObject.CompareTag("EnemyAttackBox"))
+            {
+                player.trigger = collider.gameObject;
+                player.battleInfo = Player.BattleInfo.Hit;
+                break;
+            }
         }
     }
     private void OnEnable()

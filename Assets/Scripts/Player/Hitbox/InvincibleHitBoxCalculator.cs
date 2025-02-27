@@ -37,7 +37,12 @@ public class InvincibleHitBoxCalculator : MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            //TODO: do something when doge successfully
+            if (collider.gameObject.CompareTag("EnemyAttackBox"))
+            {
+                player.trigger = collider.gameObject;
+                player.battleInfo = Player.BattleInfo.Doge;
+                break;
+            }
             break;
         }
     }
