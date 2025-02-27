@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HitController : MonoBehaviour,Deflectable
@@ -11,7 +12,7 @@ public class HitController : MonoBehaviour,Deflectable
     private Rigidbody2D rbParent;
 
     public bool grabbable { get; set; }
-    public int id { get; set; }
+    public int id => 0;
     void Start()
     {
         knockBackController = GetComponentInParent<KnockBackController>();
@@ -21,6 +22,15 @@ public class HitController : MonoBehaviour,Deflectable
         EventManager.StartListening<Deflectable>("PlayerDeflecting", OnDeflect);
         EventManager.StartListening<Deflectable>("PlayerGettingHit", OnSuccess);
         EventManager.StartListening<Deflectable>("PlayerEvading", OnFailure);
+        EventManager.StartListening<Deflectable>("PlayerGrabbing", OnGrab);
+    }
+
+    private void OnDestory()
+    {
+        EventManager.StopListening<Deflectable>("PlayerDeflecting", OnDeflect);
+        EventManager.StopListening<Deflectable>("PlayerGettingHit", OnSuccess);
+        EventManager.StopListening<Deflectable>("PlayerEvading", OnFailure);
+        EventManager.StopListening<Deflectable>("PlayerGrabbing", OnGrab);
     }
 
     // Update is called once per frame
@@ -152,7 +162,7 @@ public class HitController : MonoBehaviour,Deflectable
         }
     }
 
-    private void onGrab(Deflectable df)
+    private void OnGrab(Deflectable df)
     {
         if (ReferenceEquals(df, this))
         // Check if this enemy is the one attacking and deflected
@@ -163,6 +173,14 @@ public class HitController : MonoBehaviour,Deflectable
                 UnityEngine.Debug.Log($"{name}'s attack is Grabbed by player, Destroy");
             }
         }
+    }
+    public void BecomeGrabbable()
+    {
+        grabbable = true;
+    }
+    public void BecomeInGrabbale()
+    {
+        grabbable = false;
     }
     public Transform GetTransform() { return transform; }
 
@@ -175,4 +193,6 @@ public class HitController : MonoBehaviour,Deflectable
     {
         return false;
     }
+
+    
 }
