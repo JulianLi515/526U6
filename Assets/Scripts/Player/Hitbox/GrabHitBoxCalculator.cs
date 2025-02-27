@@ -37,8 +37,9 @@ public class GrabHitBoxCalculator : MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            if (collider.gameObject.CompareTag("EnemyHitBox"))
+            if (collider.gameObject.CompareTag("EnemyGrabbedBox"))
             {
+                //TODO: If grab two item in the same frame
                 player.battleInfo = Player.BattleInfo.Grab;
                 player.trigger = collider.gameObject;
                 break;
@@ -56,11 +57,5 @@ public class GrabHitBoxCalculator : MonoBehaviour
             transform.position = player.transform.position - offSet;
         }
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
-    }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        player.battleInfo = Player.BattleInfo.Grab;
-        player.trigger = other.gameObject;
     }
 }

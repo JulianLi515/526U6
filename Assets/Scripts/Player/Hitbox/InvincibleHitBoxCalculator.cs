@@ -37,7 +37,8 @@ public class InvincibleHitBoxCalculator : MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            //Debug.Log("Processed collider: " + collider.name);
+            //TODO: do something when doge successfully
+            break;
         }
     }
     private void OnEnable()
@@ -45,8 +46,4 @@ public class InvincibleHitBoxCalculator : MonoBehaviour
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
     }
 
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        player.battleInfo = Player.BattleInfo.Doge;
-    }
 }

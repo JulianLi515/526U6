@@ -60,10 +60,4 @@ public class DeflectHitBoxCalculator : MonoBehaviour
         contactFilter.SetLayerMask(contactLayer);
 
     }
-
-    private void OnTriggerStay2D(Collider2D other)
-    {
-        //player.battleInfo = Player.BattleInfo.Deflect;
-        //player.trigger = other.gameObject;
-    }
 }
