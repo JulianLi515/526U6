@@ -19,23 +19,18 @@ public class LancerWeaponController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
-        if (collision.CompareTag("PlayerGrabBox"))
-        {
-            result = 3;
-            return;
-        }
-        if (collision.CompareTag("PlayerDeflectBox"))
+        if (collision.CompareTag("Ground"))
         {
             result = 2;
             return;
         }
-        if (collision.CompareTag("PlayerInvincibleBox"))
+        if (collision.CompareTag("Ground"))
         {
             result = 1;
             return;
 
         }
-        if (collision.CompareTag("PlayerBodyBox"))
+        if (collision.CompareTag("Ground"))
         {
             result = 0;
             return;
@@ -47,5 +42,12 @@ public class LancerWeaponController : MonoBehaviour
     {
         return result;
     }
+
+    public void OnEnable()
+    {
+        result = 1;
+    }
+    
+
 
 }
