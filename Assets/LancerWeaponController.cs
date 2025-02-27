@@ -5,12 +5,12 @@ using UnityEngine;
 public class LancerWeaponController : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private int result;
+    //private int result;
     public LayerMask targetLayer;
 
     void Start()
     {
-        result = 0; // default to 1 which is same hit invincible player
+        //result = 0; // default to 1 which is same hit invincible player
     }
 
     // Update is called once per frame
@@ -23,28 +23,23 @@ public class LancerWeaponController : MonoBehaviour
     {
         List<Collider2D> results = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
-        filter.useTriggers = true;
+        filter.useTriggers = true; // this is important
         filter.useLayerMask = true;
         filter.SetLayerMask(targetLayer);
         bool deflected = false;
         bool hit = false;
-        //Debug.Log("Checking");
         int b = GetComponent<Collider2D>().Overlap(filter, results);
-        //int a = Physics2D.OverlapCollider(GetComponent<Collider2D>(), filter, results);
-        Debug.Log(b);
+        //Debug.Log(b);
         foreach (Collider2D cldr in results)
         {
-            if (cldr == null)
-            {
-                continue;
-            }
+            
             if (cldr.CompareTag("PlayerDeflectBox"))
             {
                 
                 deflected = true;
             }
 
-            else if (cldr.CompareTag("PlayerBodyBox"))
+            else if (cldr.CompareTag("PlayerHitBox"))
             {
                 hit = true;
             }
@@ -101,10 +96,10 @@ public class LancerWeaponController : MonoBehaviour
     //    return result;
     //}
 
-    public void OnEnable()
-    {
-        result = 0;
-    }
+    //public void OnEnable()
+    //{
+    //    result = 0;
+    //}
     
 
 
