@@ -14,10 +14,10 @@ public partial class CheckIfGrabbedAction : Action
     {
         if (GrabController.Value.gameObject.activeSelf && !IsWeaponGrabbed.Value)
         {
-            if (GrabController.Value.GetResult())
+            if (GrabController.Value.result == 1)
             {
                 IsWeaponGrabbed.Value = true;
-                GrabController.Value.gameObject.SetActive(false);
+                //GrabController.Value.gameObject.SetActive(false);
                 return Status.Success;
             }
             

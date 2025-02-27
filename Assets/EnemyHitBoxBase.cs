@@ -7,7 +7,7 @@ public class EnemyHitBoxBase : MonoBehaviour
     
     public virtual void playerDestroy(int _param)
     {
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
  
 

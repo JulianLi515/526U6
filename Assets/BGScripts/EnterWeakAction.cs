@@ -12,6 +12,7 @@ public partial class EnterWeakAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Weapon;
     [SerializeReference] public BlackboardVariable<float> N;
     [SerializeReference] public BlackboardVariable<bool> IsWeaponGrabbed;
+    [SerializeReference] public BlackboardVariable<EnemyHitBoxBase> GrabHitBoxController;
     private float timer = 0;
     
     protected override Status OnStart()
@@ -19,7 +20,7 @@ public partial class EnterWeakAction : Action
         if (IsWeaponGrabbed.Value)
         {
             timer = N.Value;
-            //GrabController.Value.gameObject.SetActive(false);
+            GrabHitBoxController.Value.gameObject.SetActive(false);
             Weapon.Value.SetActive(false);
             return Status.Running;
             

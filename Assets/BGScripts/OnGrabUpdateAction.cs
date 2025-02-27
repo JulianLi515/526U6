@@ -12,7 +12,7 @@ public partial class OnGrabUpdateAction : Action
     [SerializeReference] public BlackboardVariable<EnemyGrabController> GrabController;
     protected override Status OnStart()
     {
-        if (GrabController.Value.GetResult())
+        if (GrabController.Value.result == 1)
         {
             IsWeaponGrabbed.Value = true;
             return Status.Success;

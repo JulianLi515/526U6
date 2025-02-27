@@ -519,6 +519,10 @@ PrefabInstance:
       propertyPath: contactLayer.m_Bits
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 1814588495679332723, guid: 46b962d40462f5c4283b90cc4dc3250c, type: 3}
+      propertyPath: contactLayer.m_Bits
+      value: 512
+      objectReference: {fileID: 0}
     - target: {fileID: 2283033408763886428, guid: 46b962d40462f5c4283b90cc4dc3250c, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
