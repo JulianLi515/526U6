@@ -44,7 +44,7 @@ public class DeflectHitBoxCalculator : MonoBehaviour
             {
                 player.trigger = collider.gameObject;
                 player.battleInfo = Player.BattleInfo.Deflect;
-                player.trigger.SetActive(false);
+                player.trigger.gameObject.GetComponent<EnemyHitBoxBase>().playerDestroy(2);
                 break;
             }
         }

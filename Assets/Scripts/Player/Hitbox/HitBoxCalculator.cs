@@ -47,7 +47,7 @@ public class  HitBoxCalculator: MonoBehaviour
             {
                 player.trigger = collider.gameObject;
                 player.battleInfo = Player.BattleInfo.Hit;
-                player.trigger.SetActive(false);
+                player.trigger.gameObject.GetComponent<EnemyHitBoxBase>().playerDestroy(1);
                 break;
             }
         }
