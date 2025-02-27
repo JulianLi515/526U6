@@ -2,114 +2,25 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public class LancerWeaponController : MonoBehaviour
+public class LancerWeaponController : EnemyHitBoxBase
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //private int result;
     public LayerMask targetLayer;
-    int result;
-
-    void Start()
-    {
-        //result = 0; // default to 1 which is same hit invincible player
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (result == 2)
-        {
-            gameObject.SetActive(false);
-        }
-        result = GetResultInternal();
-    }
-
-    public int GetResultInternal()
-    {
-        List<Collider2D> results = new List<Collider2D>();
-        ContactFilter2D filter = new ContactFilter2D();
-        filter.useTriggers = true; // this is important
-        filter.useLayerMask = true;
-        filter.SetLayerMask(targetLayer);
-        bool deflected = false;
-        bool hit = false;
-        int b = GetComponent<Collider2D>().Overlap(filter, results);
-        //Debug.Log(b);
-        foreach (Collider2D cldr in results)
-        {
-            
-            if (cldr.CompareTag("PlayerDeflectBox"))
-            {
-                
-                deflected = true;
-            }
-
-            else if (cldr.CompareTag("PlayerHitBox"))
-            {
-                hit = true;
-            }
-        }
-
-        if (deflected)
-        {
-            return 2;
-
-        }
-        else
-        {
-            if (hit)
-            {
-                return 1;
-            }
-            else
-            {
-                return 0;
-            }
-
-        }
-    }
-
-    //private void OnTriggerStay2D(Collider2D collision)
-    //{
-
-    //    if (collision.CompareTag("PlayerDeflectBox"))
-    //    {
-    //        result = 2;
-    //        Debug.Log("DDDDD");
-    //        return;
-    //    }
-
-    //    if (collision.CompareTag("PlayerInvincibleBox"))
-    //    {
-    //        result = 0;
-    //        Debug.Log("IIII");
-    //        return;
-    //    }
-    //    if (collision.CompareTag("PlayerBodyBox"))
-    //    {
-    //        result = 1;
-    //        Debug.Log("BBBB");
-    //        return;
-
-    //    }
 
 
-    //}
 
-    public int GetResult()
-    {
-        if (!gameObject.activeSelf)
-        {
-            return 0;
-        }
-        return result;
-    }
+    
 
     public void OnEnable()
     {
         result = 0;
     }
 
-
-
+    public override void playerDestroy(int _param)
+    {
+        result = _param;
+        base.playerDestroy(_param);
+        
+    }
 }

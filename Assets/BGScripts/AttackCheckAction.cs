@@ -29,7 +29,12 @@ public partial class AttackCheckAction : Action
         }
         
         
-        switch (Weaponcontroller.Value.GetResult())
+        //if (!Weaponcontroller.Value.gameObject.activeSelf)
+        //{
+        //    HitCounter.Value++;
+            
+        //}
+        switch (Weaponcontroller.Value.result)
         {
             case 0:
                 return Status.Running;
@@ -43,7 +48,7 @@ public partial class AttackCheckAction : Action
                 HitCounter.Value++;
                 return Status.Success;
         }
-        return Status.Success;
+        return Status.Running;
     }
 
     protected override void OnEnd()
