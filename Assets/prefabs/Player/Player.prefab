@@ -263,68 +263,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &2005089518949625230
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 3166652458610910012}
-  m_Layer: 10
-  m_Name: SpwanLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &3166652458610910012
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005089518949625230}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2283033408763886428}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &3303669594675593302
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2270023590824524194}
-  m_Layer: 10
-  m_Name: SpwanRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2270023590824524194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3303669594675593302}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2283033408763886428}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3763788250579995280
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +275,7 @@ GameObject:
   - component: {fileID: 7909097920146672901}
   - component: {fileID: 2015660949475799573}
   - component: {fileID: 2920332615878416700}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: InvicibleBox
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -438,6 +376,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   player: {fileID: 0}
+  triggerCollider: {fileID: 7909097920146672901}
+  contactLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &3858082873889350826
 GameObject:
   m_ObjectHideFlags: 0
@@ -556,37 +498,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &3939469909278054609
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7797305151974412933}
-  m_Layer: 10
-  m_Name: SpwanRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7797305151974412933
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3939469909278054609}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8322928243262861240}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4129786270111255289
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +715,7 @@ GameObject:
   - component: {fileID: 8121586735680698650}
   - component: {fileID: 6658579482978398360}
   - component: {fileID: 732128524338560565}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: DeflectHitBox
   m_TagString: PlayerDeflectBox
   m_Icon: {fileID: 0}
@@ -820,13 +731,11 @@ Transform:
   m_GameObject: {fileID: 4595705052600271796}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.065999985, y: 0.3619999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 841904448169774132}
-  - {fileID: 8693812790263834485}
-  - {fileID: 7797305151974412933}
   m_Father: {fileID: 3225512665570647777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &8121586735680698650
@@ -907,8 +816,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   player: {fileID: 0}
-  SpwanPointLeft: {fileID: 5126858446751168240}
-  SpwanPointRight: {fileID: 3939469909278054609}
+  offSet: {x: 2, y: 0, z: 0}
+  triggerCollider: {fileID: 6658579482978398360}
+  contactLayer:
+    serializedVersion: 2
+    m_Bits: 8192
 --- !u!1 &4714637621387463393
 GameObject:
   m_ObjectHideFlags: 0
@@ -939,37 +851,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3225512665570647777}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5126858446751168240
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8693812790263834485}
-  m_Layer: 10
-  m_Name: SpwanLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8693812790263834485
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5126858446751168240}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.2, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8322928243262861240}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5403052189829060246
 GameObject:
@@ -1244,7 +1125,7 @@ GameObject:
   - component: {fileID: 2061419318792580606}
   - component: {fileID: 3478480042217333884}
   - component: {fileID: 2628157972477075150}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: GrabHitBox
   m_TagString: PlayerGrabBox
   m_Icon: {fileID: 0}
@@ -1260,13 +1141,11 @@ Transform:
   m_GameObject: {fileID: 6046421752998975312}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.065999985, y: 0.3619999, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7458249379023739088}
-  - {fileID: 3166652458610910012}
-  - {fileID: 2270023590824524194}
   m_Father: {fileID: 3225512665570647777}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &2061419318792580606
@@ -1347,8 +1226,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   player: {fileID: 0}
-  SpwanPointLeft: {fileID: 2005089518949625230}
-  SpwanPointRight: {fileID: 3303669594675593302}
+  offSet: {x: 2, y: 0, z: 0}
+  triggerCollider: {fileID: 3478480042217333884}
+  contactLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &6154383912242399294
 GameObject:
   m_ObjectHideFlags: 0
@@ -1919,7 +1801,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -491072345
   m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
