@@ -20,7 +20,7 @@ public partial class EnterWeakAction : Action
         if (IsWeaponGrabbed.Value)
         {
             timer = N.Value;
-            GrabHitBoxController.Value.gameObject.SetActive(false);
+            //GrabHitBoxController.Value.gameObject.SetActive(false);
             Weapon.Value.SetActive(false);
             return Status.Running;
             
@@ -49,6 +49,7 @@ public partial class EnterWeakAction : Action
         {
             Weapon.Value.SetActive(true);
             IsWeaponGrabbed.Value = false;
+            GrabHitBoxController.Value.result = 0;// important, set to zero or is grabbed will be set true in update
             return Status.Success;
         }
         //Debug.Log("Dropping weapon");

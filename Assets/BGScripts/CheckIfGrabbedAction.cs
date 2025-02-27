@@ -9,18 +9,41 @@ using Unity.Properties;
 public partial class CheckIfGrabbedAction : Action
 {
     [SerializeReference] public BlackboardVariable<bool> IsWeaponGrabbed;
-    [SerializeReference] public BlackboardVariable<EnemyGrabController> GrabController;
+    [SerializeReference] public BlackboardVariable<EnemyHitBoxBase> GrabController;
+    [SerializeReference] public BlackboardVariable<int> WeaponHitCounter;
     protected override Status OnStart()
     {
-        if (GrabController.Value.gameObject.activeSelf && !IsWeaponGrabbed.Value)
+
+        //if (WeaponHitCounter.Value >= 1)
+        //{
+        //    if (!IsWeaponGrabbed.Value && !GrabController.Value.gameObject.activeSelf)
+        //    {
+        //        GrabController.Value.gameObject.SetActive(true);
+        //        //Debug.Log("Grababledddddddddddd");
+                
+        //    }
+        //    //return Status.Success;
+        //}
+        //else
+        //{
+        //    GrabController.Value.gameObject.SetActive(false);
+        //    //return Status.Failure;
+        //}
+        //}
+        if (GrabController.Value.result == 1)
         {
-            if (GrabController.Value.result == 1)
+            
+            if (!IsWeaponGrabbed.Value)
             {
+
+                
                 IsWeaponGrabbed.Value = true;
-                //GrabController.Value.gameObject.SetActive(false);
+                WeaponHitCounter.Value = 0;
+
+                
                 return Status.Success;
             }
-            
+
         }
         return Status.Failure;
     }

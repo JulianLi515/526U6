@@ -15,7 +15,14 @@ public class EnemyGrabController : EnemyHitBoxBase,Deflectable
 
     public override void playerDestroy(int _param)
     {
-        result = _param;
         base.playerDestroy(_param);
+        result = _param;
+
+
+    }
+
+    private void OnEnable()
+    {
+        result = 0;
     }
 }

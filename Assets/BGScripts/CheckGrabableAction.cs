@@ -11,19 +11,27 @@ public partial class CheckGrabableAction : Action
     [SerializeReference] public BlackboardVariable<EnemyGrabController> GrabController;
     [SerializeReference] public BlackboardVariable<int> WeaponHitCounter;
     [SerializeReference] public BlackboardVariable<int> maxHit;
+    [SerializeReference] public BlackboardVariable<bool> IsWeaponGrabbed;
     protected override Status OnStart()
     {
         if (WeaponHitCounter.Value >= 1)
         {
-            GrabController.Value.gameObject.SetActive(true);
+            if (!IsWeaponGrabbed.Value && !GrabController.Value.gameObject.activeSelf)
+            {
+                GrabController.Value.gameObject.SetActive(true);
+                Debug.Log("Grababledddddddddddd");
+                return Status.Success;
+            }
             return Status.Success;
+
         }
-        else
-        {
-            GrabController.Value.gameObject.SetActive(false);
-            return Status.Failure;
-        }
-        
+        return Status.Failure;
+        //else
+        //{
+        //    GrabController.Value.gameObject.SetActive(false);
+        //    return Status.Failure;
+        //}
+
     }
 
     

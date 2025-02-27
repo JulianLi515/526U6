@@ -9,6 +9,7 @@ using Unity.Properties;
 public partial class AttackCheckAction : Action
 {
     [SerializeReference] public BlackboardVariable<LancerWeaponController> Weaponcontroller;
+    [SerializeReference] public BlackboardVariable<EnemyGrabController> GrabController;
     [SerializeReference] public BlackboardVariable<int> HitCounter;
     [SerializeReference] public BlackboardVariable<bool> CheckPoint1;
 
@@ -46,6 +47,10 @@ public partial class AttackCheckAction : Action
                 Debug.Log("Parry");
                 //Weaponcontroller.Value.gameObject.SetActive(false);
                 HitCounter.Value++;
+                if (HitCounter.Value >= 1)
+                {
+                    GrabController.Value.gameObject.SetActive(true);
+                }
                 return Status.Success;
         }
         return Status.Running;
