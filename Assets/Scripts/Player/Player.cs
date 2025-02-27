@@ -262,38 +262,14 @@ public class Player : MonoBehaviour
             EventManager.TriggerEvent("PlayerGrabbing", df);
             return;
         }
-        if (!df.canGrab()) 
+        if (df.canGrab()) 
         {
-            switch (iState)
-            {
-                case IState.Deflect:
-                    // Deflect Sucessful, deflectreward
-                    stateMachine.ChangeState(deflectRewardState, df);
-                    EventManager.TriggerEvent("PlayerDeflecting", df);
-                    break;
-                case IState.Invincible:
-                    //EventManager.TriggerEvent("PlayerEvading", df);
-                    break;
-                case IState.Grab:
-                    //Grab failed,go To damagePenalty
-                    stateMachine.ChangeState(damagePenaltyState, df);
-                    EventManager.TriggerEvent("PlayerGettingHit", df);
-                    break;
-                case IState.Fragile:
-                    // Get Hit, go To damagedPenalty
-                    stateMachine.ChangeState(damagePenaltyState, df);
-                    EventManager.TriggerEvent("PlayerGettingHit", df);
-                    break;
-            }
+            stateMachine.ChangeState(grabRewardState, df);
+            EventManager.TriggerEvent("PlayerGrabbing", df);
             return;
         }
         switch (iState)
         {
-            case IState.Grab:
-                //Grab Sucessful, grabreward
-                stateMachine.ChangeState(grabRewardState, df);
-                EventManager.TriggerEvent("PlayerGrabbing", df);
-                break;
             case IState.Deflect:
                 // Deflect Sucessful, deflectreward
                 stateMachine.ChangeState(deflectRewardState,df);
