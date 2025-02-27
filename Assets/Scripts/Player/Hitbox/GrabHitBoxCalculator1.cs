@@ -37,7 +37,12 @@ public class GrabHitBoxCalculator : MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            //Debug.Log("Processed collider: " + collider.name);
+            if (collider.gameObject.CompareTag("EnemyHitBox"))
+            {
+                player.battleInfo = Player.BattleInfo.Grab;
+                player.trigger = collider.gameObject;
+                break;
+            }
         }
     }
     private void OnEnable()
