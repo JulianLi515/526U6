@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1656972153513040685}
   - component: {fileID: 7909097920146672901}
   - component: {fileID: 2015660949475799573}
-  m_Layer: 6
+  m_Layer: 8
   m_Name: InvicibleBox
   m_TagString: Player
   m_Icon: {fileID: 0}

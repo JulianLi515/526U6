@@ -37,7 +37,7 @@ public class DeflectHitBoxCalculator : MonoBehaviour
         Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
         foreach (var collider in detectedColliders)
         {
-            //Debug.Log("Processed collider: " + collider.name);
+            Debug.Log("Processed collider: " + collider.name);
         }
     }
     private void OnEnable()

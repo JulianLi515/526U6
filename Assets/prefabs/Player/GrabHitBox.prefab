@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2061419318792580606}
   - component: {fileID: 3478480042217333884}
   - component: {fileID: 7351852520712874705}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: GrabHitBox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,6 +112,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
+  player: {fileID: 0}
+  offSet: {x: 0, y: 0, z: 0}
+  triggerCollider: {fileID: 0}
+  contactLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &9209064007017407605
 GameObject:
   m_ObjectHideFlags: 0
