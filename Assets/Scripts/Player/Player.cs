@@ -11,19 +11,22 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public PlayerInput input;
-    public enum IState
+
+    public enum BattleInfo
     {
+        Peace,
         Grab,
         Deflect,
-        Invincible,
-        Fragile,
+        Doge,
+        Attack,
+        Hit
+        
     }
 
     [Header("Stats")]
     public SpriteRenderer playerPrototypeSprite;
     public int frameRate = 60;
     public float gravityScale;
-    public IState iState;
     public bool ladderCheck;
 
     [Header("LevelCollision")]
@@ -56,7 +59,7 @@ public class Player : MonoBehaviour
     public Timer wallJumpFreezeTimer;
 
     [Header("Deflect")]
-    public GameObject deflectBoxPrefab;
+    public GameObject deflectBox;
     public float deflectDuration;
     public Timer deflectTimer;
     public float deflectHitboxOffsetX;
@@ -64,11 +67,16 @@ public class Player : MonoBehaviour
     public float deflectJumpSpeed;
 
     [Header("Grab")]
-    public GameObject grabBoxPrefab;
+    public GameObject grabBox;
     public float grabDuration;
     public Timer grabTimer;
     public float grabHitboxOffsetX;
     public float grabHitboxOffsetY;
+
+    [Header("BattleInfo")]
+    public BattleInfo battleInfo;
+    public GameObject trigger;
+
     [Header("Roll")]
     public float rollSpeed;
     public float rollCoolDown;
@@ -80,12 +88,13 @@ public class Player : MonoBehaviour
 
     [Header("Invincible")]
     public Timer Invincibletimer;
+    public GameObject InvincibleBox;
 
     [Header("DamagedPenalty")]
-    public float knockbackThreshold = 5f;
-    public float knockbackForceMultiplier = 10f;
-    public float controlLossDuration = 0.5f;
-    public float KnockBackDuration = 0.2f;
+    public float knockbackThreshold;
+    public float knockbackForceMultiplier;
+    public float controlLossDuration;
+    public float KnockBackDuration;
     public Timer KnockBackTimer;
 
     [Header("Weapon")]
@@ -105,7 +114,6 @@ public class Player : MonoBehaviour
 
     #region Controllers
     public TimerCountDownController TimerCountDownCtrl { get; private set; }
-    public InvincibleController InvincibleCtrl { get; private set; }
     public GroundMoveController GroundMoveCtrl { get; private set; }
     public FlipController FlipCtrl { get; private set; }
     public InputBufferController InputBufferCtrl { get; private set; }
@@ -145,7 +153,6 @@ public class Player : MonoBehaviour
         input = GetComponent<PlayerInput>();
 
         TimerCountDownCtrl = new TimerCountDownController(this);
-        InvincibleCtrl = new InvincibleController(this);
         GroundMoveCtrl = new GroundMoveController(this);
         FlipCtrl = new FlipController(this);
         InputBufferCtrl = new InputBufferController(this);
@@ -176,6 +183,12 @@ public class Player : MonoBehaviour
         ladderMoveState = new PlayerLadderMoveState(this, stateMachine, "LadderMove");
         attackState = new PlayerAttackState(this, stateMachine, "Skill");
 
+        deflectBox.SetActive(false);
+        grabBox.SetActive(false);
+        InvincibleBox.SetActive(false);
+
+        battleInfo = BattleInfo.Peace;
+
     }
 
     private void Start()
@@ -190,11 +203,6 @@ public class Player : MonoBehaviour
 
         input.EnableGamePlayInputs();
         stateMachine.Initialize(fallState);
-        iState = IState.Fragile;
-
-        //Subscribe to enemyAttacking
-        EventManager.StartListening<Deflectable>("EnemyAttacking", OnDamage);
-        EventManager.StartListening("InvincibleStop", OnInvincibleStop);
 
     }
 
@@ -206,12 +214,17 @@ public class Player : MonoBehaviour
         //Timer count down
         TimerCountDownCtrl.Update();
 
+        //battbleTriggered StateChange
+        if(battleInfo!= BattleInfo.Peace)
+        {
+            OnBattle();
+        }
 
+        // stateMachine update second; aleast 0 frame on Playerstate.update() is called()
         stateMachine.currentState.Update();
 
         //Debug
         rawSpeed = rb.linearVelocity;
-        PlayerColorStateIndicator();
 
 
     }
@@ -219,14 +232,11 @@ public class Player : MonoBehaviour
     private void LateUpdate()
     {
         stateMachine.currentState.LateUpdate();
-        
-
     }
 
     private void OnDestroy()
     {
-        EventManager.StopListening<Deflectable>("EnemyAttacking", OnDamage);
-        EventManager.StopListening("InvincibleStop", OnInvincibleStop);
+        
     }
 
     void OnGUI()
@@ -234,72 +244,43 @@ public class Player : MonoBehaviour
         GUI.Label(new Rect(200, 200, 200, 200), "playerState: " + stateMachine.currentState.animBoolName);
     }
 
-    private void PlayerColorStateIndicator()
-    {
-        switch (iState)
-        {
-            case IState.Fragile:
-                playerPrototypeSprite.color = Color.gray;
-                break;
-            case IState.Deflect:
-                playerPrototypeSprite.color = Color.blue;
-                break;
-            case IState.Invincible:
-                playerPrototypeSprite.color = Color.yellow;
-                break;
-        }
-    }
     private void OnDrawGizmos()
     {
         //LevelCollisionCtrl.draw();
     }
 
-    private void OnDamage(Deflectable df)
+    private void OnBattle()
     {
-        if (df.isDrop())
+        switch (battleInfo)
         {
-            stateMachine.ChangeState(grabRewardState, df);
-            EventManager.TriggerEvent("PlayerGrabbing", df);
-            return;
-        }
-        if (df.canGrab()) 
-        {
-            stateMachine.ChangeState(grabRewardState, df);
-            EventManager.TriggerEvent("PlayerGrabbing", df);
-            return;
-        }
-        switch (iState)
-        {
-            case IState.Deflect:
-                // Deflect Sucessful, deflectreward
-                stateMachine.ChangeState(deflectRewardState,df);
-                EventManager.TriggerEvent("PlayerDeflecting", df);
+            case BattleInfo.Grab:
+                stateMachine.ChangeState(grabRewardState);
                 break;
-            case IState.Invincible:
-                //EventManager.TriggerEvent("PlayerEvading", df);
+            case BattleInfo.Deflect:
+                stateMachine.ChangeState(deflectRewardState);
                 break;
-            case IState.Fragile:
-                // Get Hit, go To damagedPenalty
-                stateMachine.ChangeState(damagePenaltyState,df);
-                EventManager.TriggerEvent("PlayerGettingHit", df);
+            case BattleInfo.Doge:
+                //Invinsible do nothing
+                break;
+            case BattleInfo.Hit:
+                stateMachine.ChangeState(damagePenaltyState);
+                break;
+            case BattleInfo.Attack:
+                //TODO:Implement Attack reward state
                 break;
         }
     }
 
-
-    private void OnInvincibleStop()
+    public void GoInvincible(float Duration)
     {
-        iState = IState.Fragile;
+        StartCoroutine(InvincibleCoroutine(Duration));
     }
 
-    public void StartLadderInteractionCheck()
+    IEnumerator InvincibleCoroutine(float Duration)
     {
-        ladderCheck = true;
-    }
-
-    public void StopLadderInteractionCheck()
-    {
-        ladderCheck = false;
+        InvincibleBox.SetActive(true);
+        yield return new WaitForSeconds(Duration);
+        InvincibleBox.SetActive(false);
     }
 
 }

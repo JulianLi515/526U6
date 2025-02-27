@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeflectHitBoxCalculator : MonoBehaviour
+public class GrabHitBoxCalculator : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Player player;
@@ -48,17 +48,14 @@ public class DeflectHitBoxCalculator : MonoBehaviour
         }
         else
         {
-            transform.position = player.transform.position -offSet;
+            transform.position = player.transform.position - offSet;
         }
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
-        contactFilter.useTriggers = true;
-        contactFilter.SetLayerMask(contactLayer);
-
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        //player.battleInfo = Player.BattleInfo.Deflect;
-        //player.trigger = other.gameObject;
+        player.battleInfo = Player.BattleInfo.Grab;
+        player.trigger = other.gameObject;
     }
 }

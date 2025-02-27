@@ -10,14 +10,13 @@ public class PlayerDamagedPenalyState : PlayerState
     {
         base.Enter();
         player.KnockBackCtrl.Prep();
-        player.iState = Player.IState.Invincible;
         
     }
 
     public override void Exit()
     {
         base.Exit();
-        player.iState = Player.IState.Fragile;
+        player.battleInfo = Player.BattleInfo.Peace;
     }
 
     public override void LateUpdate()

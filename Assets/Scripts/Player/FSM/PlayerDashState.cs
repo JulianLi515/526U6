@@ -19,8 +19,6 @@ public class PlayerDashState : PlayerState
     {
         base.Exit();
         player.rb.linearVelocity = new Vector2(0, player.rb.linearVelocity.y);
-        //TODO: Use event to change Istate
-        player.iState = Player.IState.Fragile;
     }
 
     public override bool Update()

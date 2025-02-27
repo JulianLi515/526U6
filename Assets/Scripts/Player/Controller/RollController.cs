@@ -22,22 +22,17 @@ public class RollController
     {
         rollCoolDownTimer.Set(player.rollCoolDown);
         rollDurationTimer.Set(player.rollDuration);
-        player.iState = Player.IState.Invincible;
-        EventManager.TriggerEventWithDelay("InvincibleStop", player.rollInvincibleDuration);
+        player.GoInvincible(player.rollInvincibleDuration);
     }
     public void Rolling()
     {
         player.rb.linearVelocity = new Vector2(player.rollSpeed * player.facingDir, player.rb.linearVelocity.y);
- 
+        
     }
 
     public void Dashing()
     {
         player.rb.linearVelocity = new Vector2(player.rollSpeed * player.facingDir, 0);
-        //TODO: Use event to change Istate
-        if (!player.InvincibleCtrl.timer.TimeUp())
-        {
-            player.iState = Player.IState.Fragile;
-        }
+        
     }
 }

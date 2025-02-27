@@ -15,6 +15,7 @@ public class PlayerDeflectRewardState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        player.battleInfo = Player.BattleInfo.Peace;
     }
 
     public override void LateUpdate()

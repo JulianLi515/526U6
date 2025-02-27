@@ -14,9 +14,9 @@ public class KnockPlayerBackController
     }
     public void Prep()
     {
-        direction = (player.transform.position - player.stateMachine.trigger.getPosition()).normalized;
+        direction = (player.transform.position - player.trigger.transform.position).normalized;
         timer.Set(player.KnockBackDuration);
-        player.InvincibleCtrl.GoInvincivle(player.KnockBackDuration);
+        player.GoInvincible(player.KnockBackDuration);
     }
     public void ApplyKnockback()
     {
@@ -29,7 +29,6 @@ public class KnockPlayerBackController
         //player.AirMoveCtrl.Freeze();
         //player.rb.AddForce(knockbackForce, ForceMode2D.Impulse);
 
-        Vector2 direction = (player.transform.position - player.stateMachine.trigger.getPosition()).normalized;
         player.rb.linearVelocity = new Vector2(direction.x * player.knockbackForceMultiplier, (direction.y+1f)*player.knockbackForceMultiplier);
     }
 }

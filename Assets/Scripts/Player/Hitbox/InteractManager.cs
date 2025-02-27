@@ -20,7 +20,7 @@ public class InteractManager : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            player.StartLadderInteractionCheck();
+            player.ladderCheck = true;
         }
     }
 
@@ -28,7 +28,7 @@ public class InteractManager : MonoBehaviour
     {
         if (collision.CompareTag("Ladder"))
         {
-            player.StopLadderInteractionCheck();
+            player.ladderCheck = false;
         }
     }
 }

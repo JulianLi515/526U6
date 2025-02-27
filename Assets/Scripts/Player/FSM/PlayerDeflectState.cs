@@ -13,7 +13,6 @@ public class PlayerDeflectState : PlayerState
         input.isDeflectBuffered = false;
         player.DeflectCtrl.Deflect();
         //TODO; modify, there must be 1 frame of Fragile when deflect finished
-        player.iState = Player.IState.Deflect;
     }
 
     public override void Exit()
@@ -21,7 +20,6 @@ public class PlayerDeflectState : PlayerState
         base.Exit();
         player.DeflectCtrl.DefelectOver();
         //TODO; modify, there must be 1 frame of Fragile when deflect finished
-        player.iState = Player.IState.Fragile;
     }
 
 

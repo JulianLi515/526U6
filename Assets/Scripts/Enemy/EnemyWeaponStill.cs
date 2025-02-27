@@ -70,9 +70,7 @@ public class EnemyWeaponStill : MonoBehaviour,Deflectable
     {
         if (isActive == 1)
         {
-            UnityEngine.Debug.Log("trigger");
             EventManager.TriggerEvent("EnemyAttacking", this);
-
         }
     }
     private void OnDeflect(Deflectable df)

@@ -20,7 +20,6 @@ public class PlayerStateMachine
         this.player = player;
     }
 
-    public Deflectable trigger { get; set; }
 
     public void Initialize(PlayerState _startState)
     {
@@ -33,16 +32,7 @@ public class PlayerStateMachine
     {
         previousState = currentState;
         currentState.Exit();
-        trigger = null;
         currentState = _newState;
-        currentState.Enter();
-    }
-    public void ChangeState(PlayerState _newState, Deflectable _trigger)
-    {
-        previousState = currentState;
-        currentState.Exit();
-        currentState = _newState;
-        trigger = _trigger;
         currentState.Enter();
     }
 

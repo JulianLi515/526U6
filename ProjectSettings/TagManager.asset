@@ -11,6 +11,13 @@ TagManager:
   - PlayerInteractBox
   - PlayerFeet
   - Spear
+  - MovingPlatform
+  - PlayerGrabBox
+  - PlayerAttackBox
+  - PlayerDeflectBox
+  - PlayerHitBox
+  - EnemyAttackBox
+  - EnemyHitBox
   layers:
   - Default
   - TransparentFX
@@ -22,8 +29,8 @@ TagManager:
   - Enemy
   - PlayerHitBox
   - EnemyHitBox
-  - PlayerAttackBox
-  - EnemyAttackBox
+  - 
+  - 
   - PlayerInteractBox
   - Drops
   - Interactable
@@ -50,6 +57,12 @@ TagManager:
     locked: 0
   - name: PlayerUI
     uniqueID: 2184531563
+    locked: 0
+  - name: HitBox
+    uniqueID: 3442883503
+    locked: 0
+  - name: Player
+    uniqueID: 3803894951
     locked: 0
   m_RenderingLayers:
   - Default

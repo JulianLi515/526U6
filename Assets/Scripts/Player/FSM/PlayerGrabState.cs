@@ -12,16 +12,12 @@ public class PlayerGrabState : PlayerState
         base.Enter();
         input.isGrabBuffered = false;
         player.GrabCtrl.Grab();
-        //TODO; modify, there must be 1 frame of Fragile when deflect finished
-        player.iState = Player.IState.Grab;
     }
 
     public override void Exit()
     {
         base.Exit();
         player.GrabCtrl.GrabOver();
-        //TODO; modify, there must be 1 frame of Fragile when deflect finished
-        player.iState = Player.IState.Fragile;
     }
 
 

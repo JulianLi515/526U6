@@ -9,12 +9,13 @@ public class PlayerGrabRewardState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.WeaponCtrl.SetCurrentWP(stateMachine.trigger.getID());
+        player.WeaponCtrl.SetCurrentWP(player.trigger.GetComponent<Deflectable>().getID());
     }
 
     public override void Exit()
     {
         base.Exit();
+        player.battleInfo = Player.BattleInfo.Peace;
     }
 
     public override void LateUpdate()

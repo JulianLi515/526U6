@@ -1,11 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeflectHitBoxCalculator : MonoBehaviour
+public class InvincibleHitBoxCalculator : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Player player;
-    public Vector3 offSet;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Collider2D triggerCollider;
     public LayerMask contactLayer;
     private ContactFilter2D contactFilter;
@@ -42,23 +42,11 @@ public class DeflectHitBoxCalculator : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (player.facingDir == 1)
-        {
-            transform.position = player.transform.position + offSet;
-        }
-        else
-        {
-            transform.position = player.transform.position -offSet;
-        }
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
-        contactFilter.useTriggers = true;
-        contactFilter.SetLayerMask(contactLayer);
-
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        //player.battleInfo = Player.BattleInfo.Deflect;
-        //player.trigger = other.gameObject;
+        player.battleInfo = Player.BattleInfo.Doge;
     }
 }
