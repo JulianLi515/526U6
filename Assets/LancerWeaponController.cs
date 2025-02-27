@@ -7,6 +7,7 @@ public class LancerWeaponController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     //private int result;
     public LayerMask targetLayer;
+    int result;
 
     void Start()
     {
@@ -16,10 +17,14 @@ public class LancerWeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (result == 2)
+        {
+            gameObject.SetActive(false);
+        }
+        result = GetResultInternal();
     }
 
-    public int GetResult()
+    public int GetResultInternal()
     {
         List<Collider2D> results = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
@@ -87,20 +92,24 @@ public class LancerWeaponController : MonoBehaviour
     //        return;
 
     //    }
-        
+
 
     //}
-    
-    //public int GetResult()
-    //{
-    //    return result;
-    //}
 
-    //public void OnEnable()
-    //{
-    //    result = 0;
-    //}
-    
+    public int GetResult()
+    {
+        if (!gameObject.activeSelf)
+        {
+            return 0;
+        }
+        return result;
+    }
+
+    public void OnEnable()
+    {
+        result = 0;
+    }
+
 
 
 }

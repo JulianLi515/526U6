@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -34,11 +35,14 @@ public class DeflectHitBoxCalculator : MonoBehaviour
     public void checkAllColliders()
     {
         detectedColliders.Clear();
-        Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
+        int a = Physics2D.OverlapCollider(triggerCollider, contactFilter, detectedColliders);
+
         foreach (var collider in detectedColliders)
         {
+            Debug.Log(collider.gameObject.name);
             if (collider.gameObject.CompareTag("EnemyAttackBox"))
             {
+                Debug.Log("DeflectPPPPPPPPPPPPP");
                 player.trigger = collider.gameObject;
                 player.battleInfo = Player.BattleInfo.Deflect;
                 break;

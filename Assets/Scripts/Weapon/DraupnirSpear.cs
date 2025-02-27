@@ -15,6 +15,7 @@ public class DraupnirSpear : MonoBehaviour
     public SpearState state;
     public float moveSpeed;
     public float liveTime;
+    public GameObject attackBox;
     private Rigidbody2D rb;
     private PlatformEffector2D pe;
     void Start()
@@ -52,13 +53,11 @@ public class DraupnirSpear : MonoBehaviour
         if (collision.collider.CompareTag("Wall"))
         {
             state = SpearState.OnWall;
-            //collision.
             rb.linearVelocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            //rb.bodyType = RigidbodyType2D.Dynamic;
-            //pe.enabled = true;
             transform.parent = collision.transform;
-            //gameObject.layer = LayerMask.NameToLayer("Ground");
+            attackBox.SetActive(false);
+
         }
 
     }

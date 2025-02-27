@@ -19,10 +19,12 @@ public partial class EnterWeakAction : Action
         if (IsWeaponGrabbed.Value)
         {
             timer = N.Value;
+            //GrabController.Value.gameObject.SetActive(false);
             Weapon.Value.SetActive(false);
             return Status.Running;
             
         }
+        //Debug.Log(timer);
         return Status.Failure;
         //if (IsParriedDuringUltimate.Value)
         //{
@@ -45,6 +47,7 @@ public partial class EnterWeakAction : Action
         if (timer <= 0)
         {
             Weapon.Value.SetActive(true);
+            IsWeaponGrabbed.Value = false;
             return Status.Success;
         }
         //Debug.Log("Dropping weapon");

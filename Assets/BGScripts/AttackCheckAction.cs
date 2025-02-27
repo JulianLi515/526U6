@@ -39,7 +39,7 @@ public partial class AttackCheckAction : Action
                 return Status.Success;
             case 2:
                 Debug.Log("Parry");
-                Weaponcontroller.Value.gameObject.SetActive(false);
+                //Weaponcontroller.Value.gameObject.SetActive(false);
                 HitCounter.Value++;
                 return Status.Success;
         }
@@ -48,7 +48,7 @@ public partial class AttackCheckAction : Action
 
     protected override void OnEnd()
     {
-        Weaponcontroller.Value.gameObject.SetActive(false);
+        //Weaponcontroller.Value.gameObject.SetActive(false);
     }
 }
 

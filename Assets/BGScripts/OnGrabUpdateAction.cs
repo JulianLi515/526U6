@@ -5,15 +5,14 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "OnGrabUpdate", story: "update [isWeaponGrabbed] with [WeaponHitController]", category: "Action", id: "438d4a28b1952871c61c5bccdc7e6573")]
+[NodeDescription(name: "OnGrabUpdate", story: "update [isWeaponGrabbed] with [GrabController]", category: "Action", id: "438d4a28b1952871c61c5bccdc7e6573")]
 public partial class OnGrabUpdateAction : Action
 {
     [SerializeReference] public BlackboardVariable<bool> IsWeaponGrabbed;
-    [SerializeReference] public BlackboardVariable<HitController> WeaponHitController;
-
+    [SerializeReference] public BlackboardVariable<EnemyGrabController> GrabController;
     protected override Status OnStart()
     {
-        if (WeaponHitController.Value.IsGrabbed())
+        if (GrabController.Value.GetResult())
         {
             IsWeaponGrabbed.Value = true;
             return Status.Success;

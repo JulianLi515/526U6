@@ -12,10 +12,15 @@ public partial class CheckIfGrabbedAction : Action
     [SerializeReference] public BlackboardVariable<EnemyGrabController> GrabController;
     protected override Status OnStart()
     {
-        if (GrabController.Value.gameObject.activeSelf)
+        if (GrabController.Value.gameObject.activeSelf && !IsWeaponGrabbed.Value)
         {
-            IsWeaponGrabbed.Value = GrabController.Value.GetResult();
-            return Status.Success;
+            if (GrabController.Value.GetResult())
+            {
+                IsWeaponGrabbed.Value = true;
+                GrabController.Value.gameObject.SetActive(false);
+                return Status.Success;
+            }
+            
         }
         return Status.Failure;
     }
