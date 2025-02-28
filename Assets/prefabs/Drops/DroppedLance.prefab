@@ -220,8 +220,8 @@ GameObject:
   - component: {fileID: 9187053119042514038}
   - component: {fileID: 7118154518574618052}
   m_Layer: 13
-  m_Name: EnemyWeapon
-  m_TagString: Untagged
+  m_Name: DroppedLance
+  m_TagString: EnemyGrabbedBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -317,6 +317,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43410f8c2f0477b4da7efbcdb2ae9a1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  result: 0
   rb: {fileID: 0}
   circle: {fileID: 0}
   frequency: 0

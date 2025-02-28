@@ -39,7 +39,6 @@ public class DeflectHitBoxCalculator : MonoBehaviour
 
         foreach (var collider in detectedColliders)
         {
-            Debug.Log(collider.gameObject.name);
             if (collider.gameObject.CompareTag("EnemyAttackBox"))
             {
                 player.trigger = collider.gameObject;
@@ -53,11 +52,11 @@ public class DeflectHitBoxCalculator : MonoBehaviour
     {
         if (player.facingDir == 1)
         {
-            transform.position = player.transform.position + offSet;
+            transform.position = new Vector2(player.transform.position.x + offSet.x, player.transform.position.y + offSet.y);
         }
         else
         {
-            transform.position = player.transform.position -offSet;
+            transform.position = new Vector2(player.transform.position.x - offSet.x, player.transform.position.y + offSet.y);
         }
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
         contactFilter.useTriggers = true;

@@ -10,13 +10,16 @@ public class PlayerDamagedPenalyState : PlayerState
     {
         base.Enter();
         player.KnockBackCtrl.Prep();
-        
+        // change player color
+        player.Bleeding.color = Color.red;
     }
 
     public override void Exit()
     {
         base.Exit();
         player.battleInfo = Player.BattleInfo.Peace;
+        // change player color
+        player.Bleeding.color = Color.gray;
     }
 
     public override void LateUpdate()

@@ -11,7 +11,7 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
     public PlayerInput input;
-
+    //TODO:Discard when implemnt UI
     public enum BattleInfo
     {
         Peace,
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public int frameRate = 60;
     public float gravityScale;
     public bool ladderCheck;
+    public SpriteRenderer Bleeding;
 
     [Header("LevelCollision")]
     public Transform groundCheckLeft;
@@ -99,8 +100,11 @@ public class Player : MonoBehaviour
 
     [Header("Weapon")]
     public PlayerWeapon weapon1;
+    public int weapon1Ammo;
     public PlayerWeapon weapon2;
+    public int weapon2Ammo;
     public PlayerWeapon currentWeapon;
+    public int currentWeaponAmmo;
     public WeaponsDiction weaponDictionary;
 
     [Header("Animation")]
@@ -204,6 +208,8 @@ public class Player : MonoBehaviour
         input.EnableGamePlayInputs();
         stateMachine.Initialize(fallState);
 
+
+
     }
 
     private void Update()
@@ -241,8 +247,12 @@ public class Player : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Label(new Rect(200, 200, 200, 200), "playerState: " + stateMachine.currentState.animBoolName);
-        GUI.Label(new Rect(200, 220, 200, 200), "battleInfo: " + battleInfo);
+        // Set the font size
+        //TODO:Discard when implemnt UI
+        GUIStyle bigFontStyle = new GUIStyle(GUI.skin.label);
+        bigFontStyle.fontSize = 16;
+        GUI.Label(new Rect(200, 100, 200, 200), "playerState: " + stateMachine.currentState.animBoolName, bigFontStyle);
+        GUI.Label(new Rect(200, 120, 200, 200), "CurrentWeapon Ammo " + currentWeaponAmmo, bigFontStyle);
     }
 
     private void OnDrawGizmos()

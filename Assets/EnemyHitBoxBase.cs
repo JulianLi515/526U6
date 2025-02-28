@@ -10,6 +10,16 @@ public class EnemyHitBoxBase : MonoBehaviour
         //Debug.Log(gameObject.name);
         gameObject.SetActive(false);
     }
- 
+
+    public virtual int getID()
+    {
+        return 0;
+    }
+
+    public virtual int getAmmo()
+    {
+        return 0;
+    }
+
 
 }

@@ -73,6 +73,7 @@ public class Lance : PlayerWeapon
 
     public override void attack(AttackInfo ai)
     {
+        
         base.attack(ai);
         if (!isDisappear)
         {
@@ -98,6 +99,7 @@ public class Lance : PlayerWeapon
     {
         base.DeactivateWeapon();
     }
+
     public void Disappear()
     {
         col.enabled = false;

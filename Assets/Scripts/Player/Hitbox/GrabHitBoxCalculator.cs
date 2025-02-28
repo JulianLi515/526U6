@@ -51,11 +51,11 @@ public class GrabHitBoxCalculator : MonoBehaviour
     {
         if (player.facingDir == 1)
         {
-            transform.position = player.transform.position + offSet;
+            transform.position = new Vector2(player.transform.position.x + offSet.x, player.transform.position.y + offSet.y);
         }
         else
         {
-            transform.position = player.transform.position - offSet;
+            transform.position = new Vector2(player.transform.position.x - offSet.x, player.transform.position.y + offSet.y);
         }
         rb.sleepMode = RigidbodySleepMode2D.NeverSleep;
     }

@@ -9,7 +9,7 @@ public class PlayerGrabRewardState : PlayerState
     public override void Enter()
     {
         base.Enter();
-        player.WeaponCtrl.SetCurrentWP(player.trigger.GetComponent<Deflectable>().getID());
+        player.WeaponCtrl.SetCurrentWP(player.trigger.GetComponent<EnemyHitBoxBase>());
     }
 
     public override void Exit()

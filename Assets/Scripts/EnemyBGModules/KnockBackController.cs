@@ -31,7 +31,6 @@ public class KnockBackController : MonoBehaviour
             Vector2 dir = ((Vector2)transform.position - PlayerInfo.instance.playerPosition).normalized;
             
             rb.linearVelocityX = rb.linearVelocityX + dir.x * magnitude;
-            Debug.Log("KnockBack");
         }
     }
 
