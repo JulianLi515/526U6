@@ -15,7 +15,6 @@ public class DraupnirSpear : MonoBehaviour
     public SpearState state;
     public float moveSpeed;
     public float liveTime;
-    public int damage;
     public GameObject attackBox;
     private Rigidbody2D rb;
     private PlatformEffector2D pe;
@@ -59,7 +58,7 @@ public class DraupnirSpear : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             transform.parent = collision.transform;
-            attackBox.SetActive(false);
+            StartCoroutine(nameof(DisableAttacBoxCoroutine));
 
         }
 
@@ -73,5 +72,11 @@ public class DraupnirSpear : MonoBehaviour
         Destroy(gameObject);
     }
 
-    
+    IEnumerator DisableAttacBoxCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        attackBox.SetActive(false);
+    }
+
+
 }

@@ -14,6 +14,7 @@ public class DrpSpearVertical : MonoBehaviour
     public float moveSpeed;
     public float liveTime;
     private Rigidbody2D rb;
+    public GameObject attackBox;
     void Start()
     {
         state = SpearState.InAir;
@@ -58,10 +59,8 @@ public class DrpSpearVertical : MonoBehaviour
             state = SpearState.OnGround;
             rb.linearVelocity = Vector2.zero;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            //rb.bodyType = RigidbodyType2D.Dynamic;
-            //pe.enabled = true;
             transform.parent = other.transform;
-            //gameObject.layer = LayerMask.NameToLayer("Ground");
+            StartCoroutine(nameof(DisableAttacBoxCoroutine));
         }
     }
 
@@ -69,5 +68,11 @@ public class DrpSpearVertical : MonoBehaviour
     {
         yield return new WaitForSeconds(liveTime);
         Destroy(gameObject);
+    }
+
+    IEnumerator DisableAttacBoxCoroutine()
+    {
+        yield return new WaitForSeconds(0.2f);
+        attackBox.SetActive(false);
     }
 }
