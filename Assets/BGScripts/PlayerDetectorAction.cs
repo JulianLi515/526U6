@@ -10,6 +10,7 @@ public partial class PlayerDetectorAction : Action
 {
     [SerializeReference] public BlackboardVariable<Player> Player;
     [SerializeReference] public BlackboardVariable<PlayerDetector> BoxPlayerDetector;
+    [SerializeReference] public BlackboardVariable<bool> Lock_PlayerPointer;
     protected override Status OnStart()
     {
         Player player = BoxPlayerDetector.Value.isPlayerInRange();
@@ -19,7 +20,11 @@ public partial class PlayerDetectorAction : Action
             return Status.Success;
         }
         else
-        {
+        {  
+            if (Lock_PlayerPointer.Value)
+            {
+                return Status.Success;
+            }
             Player.Value = null;
             return Status.Failure;
         }
