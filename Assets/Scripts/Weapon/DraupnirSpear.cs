@@ -15,9 +15,12 @@ public class DraupnirSpear : MonoBehaviour
     public SpearState state;
     public float moveSpeed;
     public float liveTime;
+    public int damage;
     public GameObject attackBox;
     private Rigidbody2D rb;
     private PlatformEffector2D pe;
+
+
     void Start()
     {
         state = SpearState.InAir;
@@ -69,4 +72,6 @@ public class DraupnirSpear : MonoBehaviour
         yield return new WaitForSeconds(liveTime);
         Destroy(gameObject);
     }
+
+    
 }

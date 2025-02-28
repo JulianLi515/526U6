@@ -550,12 +550,12 @@ MonoBehaviour:
   - rid: 3664480365119013371
   - rid: 3664480365119013819
   - rid: 3664480365119013820
-  - rid: 3664480389047255509
-  - rid: 3664480463199404036
   - rid: 3664480409089999521
   - rid: 3664480457399992509
   - rid: 3664480461867974834
-  - rid: 3664480463199404764
+  - rid: 3664480476200435891
+  - rid: 3664480480938950843
+  - rid: 3664480482306031884
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -641,14 +641,6 @@ MonoBehaviour:
           m_Value1: 16245620797415123463
         Name: A2
         m_Value: {fileID: 7439382690839170789}
-    - rid: 3664480389047255509
-      type: {class: 'BlackboardVariable`1[[HitController, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
-      data:
-        GUID:
-          m_Value0: 7308801316572935931
-          m_Value1: 14547709680681680958
-        Name: WeaponHitController
-        m_Value: {fileID: 8186932388191642833}
     - rid: 3664480409089999521
       type: {class: 'BlackboardVariable`1[[GeneralColorController, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -673,22 +665,30 @@ MonoBehaviour:
           m_Value1: 3207053318547441734
         Name: GrabController
         m_Value: {fileID: 8229116199795249755}
-    - rid: 3664480463199404036
+    - rid: 3664480476200435891
       type: {class: 'BlackboardVariable`1[[EnemyHitController, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 438887580198142341
-          m_Value1: 9233961644758043379
+          m_Value0: 8111293574324843249
+          m_Value1: 7110646948654443024
         Name: HitController
         m_Value: {fileID: 959805864550949470}
-    - rid: 3664480463199404764
+    - rid: 3664480480938950843
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:
-          m_Value0: 314152570889014558
-          m_Value1: 640795766252876448
-        Name: StunTime
-        m_Value: 3
+          m_Value0: 15075441431080491993
+          m_Value1: 10737327304930484604
+        Name: ITimeOnHit
+        m_Value: 0.3
+    - rid: 3664480482306031884
+      type: {class: 'BlackboardVariable`1[[KnockBackController, Assembly-CSharp]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 687377602386418513
+          m_Value1: 3002866087440722539
+        Name: KnockBackController
+        m_Value: {fileID: 1013120972410541685}
 --- !u!114 &6633012294548280074
 MonoBehaviour:
   m_ObjectHideFlags: 0

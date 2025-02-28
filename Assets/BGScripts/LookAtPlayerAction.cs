@@ -14,6 +14,10 @@ public partial class LookAtPlayerAction : Action
 
     protected override Status OnStart()
     {
+        if (Player.Value == null)
+        {
+            return Status.Failure;
+        }
         if ((Self.Value.transform.position - Player.Value.transform.position).x > 0)
         {
             if (FacingDir.Value == 1)

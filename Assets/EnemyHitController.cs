@@ -16,7 +16,7 @@ public class EnemyHitController : MonoBehaviour
         
     }
 
-    public bool GetResult()
+    public int GetResult()
     {
         List<Collider2D> results = new List<Collider2D>();
         ContactFilter2D filter = new ContactFilter2D();
@@ -31,13 +31,13 @@ public class EnemyHitController : MonoBehaviour
 
             if (cldr.CompareTag("PlayerAttackBox"))
             {
+                return cldr.GetComponent<CanDoDamage>().GetDamage();
 
-                return true;
             }
 
             
         }
 
-        return false;
+        return 0;
     }
 }

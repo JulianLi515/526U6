@@ -22,6 +22,8 @@ public partial class EnterWeakAction : Action
             timer = N.Value;
             //GrabHitBoxController.Value.gameObject.SetActive(false);
             Weapon.Value.SetActive(false);
+            Self.Value.GetComponentInChildren<SpriteRenderer>().transform.localPosition = new Vector3(0, 0, 0);
+            Self.Value.GetComponentInChildren<SpriteRenderer>().transform.localRotation = Quaternion.identity;
             return Status.Running;
             
         }
