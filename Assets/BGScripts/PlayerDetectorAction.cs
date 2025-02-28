@@ -21,10 +21,10 @@ public partial class PlayerDetectorAction : Action
         }
         else
         {  
-            if (Lock_PlayerPointer.Value)
-            {
-                return Status.Success;
-            }
+            //if (Lock_PlayerPointer.Value)
+            //{
+            //    return Status.Success;
+            //}
             Player.Value = null;
             return Status.Failure;
         }

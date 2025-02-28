@@ -16,7 +16,7 @@ public partial class LookAtPlayerAction : Action
     {
         if (Player.Value == null)
         {
-            return Status.Failure;
+            return Status.Success;
         }
         if ((Self.Value.transform.position - Player.Value.transform.position).x > 0)
         {

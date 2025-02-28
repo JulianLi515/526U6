@@ -1616,6 +1616,7 @@ MonoBehaviour:
   - rid: 3664480484380901668
   - rid: 3664480486129926186
   - rid: 3664480486129926655
+  - rid: 3664480487548649551
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1765,6 +1766,14 @@ MonoBehaviour:
           m_Value1: 841165040025886358
         Name: Body
         m_Value: {fileID: 7515184782401162942}
+    - rid: 3664480487548649551
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 2215435243134035034
+          m_Value1: 10029384364151240633
+        Name: Drop
+        m_Value: {fileID: 7419014708050322617, guid: cc650da5070a1db42b39424457f83098, type: 3}
 --- !u!114 &6559275143676420845
 MonoBehaviour:
   m_ObjectHideFlags: 0

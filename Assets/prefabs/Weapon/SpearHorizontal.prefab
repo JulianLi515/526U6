@@ -392,7 +392,6 @@ MonoBehaviour:
   state: 0
   moveSpeed: 45
   liveTime: 15
-  damage: 70
   attackBox: {fileID: 3013271344987292218}
 --- !u!251 &8999599304965456753
 PlatformEffector2D:
@@ -405,7 +404,7 @@ PlatformEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 72
   m_RotationalOffset: 0
   m_UseOneWay: 1
   m_UseOneWayGrouping: 0

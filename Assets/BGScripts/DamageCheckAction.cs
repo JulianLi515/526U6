@@ -13,6 +13,8 @@ public partial class DamageCheckAction : Action
     [SerializeReference] public BlackboardVariable<float> ITimeOnHit;
     [SerializeReference] public BlackboardVariable<float> Health;
     [SerializeReference] public BlackboardVariable<EnemyDestroyer> Destroyer;
+    [SerializeReference] public BlackboardVariable<GameObject> Self;
+    [SerializeReference] public BlackboardVariable<GameObject> Drop;
     private float timer;
 
     protected override Status OnStart()
@@ -38,6 +40,11 @@ public partial class DamageCheckAction : Action
         }
         if (Health.Value < 0)
         {
+            /// Drop weapon Here
+            Vector2 pos = Self.Value.transform.position;
+            GameObject gb = GameObject.Instantiate(Drop.Value, pos, Quaternion.identity);
+            ///
+
             Destroyer.Value.DestroyMe();
         }
         return Status.Running;
