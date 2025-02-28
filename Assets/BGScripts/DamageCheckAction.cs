@@ -41,8 +41,8 @@ public partial class DamageCheckAction : Action
         if (Health.Value < 0)
         {
             /// Drop weapon Here
-            //Vector2 pos = Self.Value.transform.position;
-            //GameObject gb = GameObject.Instantiate(Drop.Value, pos, Quaternion.identity);
+            Vector2 pos = Self.Value.transform.position;
+            GameObject gb = GameObject.Instantiate(Drop.Value, pos, Quaternion.identity);
             ///
 
             Destroyer.Value.DestroyMe();

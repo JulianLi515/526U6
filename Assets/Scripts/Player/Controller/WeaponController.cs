@@ -67,6 +67,7 @@ public class WeaponController
         if (player.currentWeapon.WeaponID == grab.getID())
         {
             player.currentWeaponAmmo = grab.getAmmo();
+            player.currentWeapon.ActivateWeapon();
             return;
         }
         // if player current weapon is not the same as grabbed weapon
@@ -77,5 +78,13 @@ public class WeaponController
         // optionA,B continue: pop memu to let player choose which weapon to abandon
         // TODO: implement
     }
+
+    //public void UpdateCurrentWPAmmo()
+    //{
+    //    if(player.currentWeaponAmmo == 0)
+    //    {
+    //        player.currentWeapon.DeactivateWeapon();
+    //    }
+    //}
 
 }

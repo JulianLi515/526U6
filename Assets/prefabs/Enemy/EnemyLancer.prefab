@@ -1616,7 +1616,7 @@ MonoBehaviour:
   - rid: 3664480484380901668
   - rid: 3664480486129926186
   - rid: 3664480486129926655
-  - rid: 3664480487548649551
+  - rid: 6586438142559518805
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -1766,7 +1766,7 @@ MonoBehaviour:
           m_Value1: 841165040025886358
         Name: Body
         m_Value: {fileID: 7515184782401162942}
-    - rid: 3664480487548649551
+    - rid: 6586438142559518805
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
         GUID:

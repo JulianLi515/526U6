@@ -228,6 +228,7 @@ public class Player : MonoBehaviour
 
         // stateMachine update second; aleast 0 frame on Playerstate.update() is called()
         stateMachine.currentState.Update();
+        //WeaponCtrl.UpdateCurrentWPAmmo();
 
         //Debug
         rawSpeed = rb.linearVelocity;
