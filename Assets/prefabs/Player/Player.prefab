@@ -575,8 +575,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -491072345
-  m_SortingLayer: 3
+  m_SortingLayerID: -852083793
+  m_SortingLayer: 2
   m_SortingOrder: 10
   m_Sprite: {fileID: -9095717837082945937, guid: 207ee8102dd4143d288186ef0be518ee, type: 3}
   m_Color: {r: 1, g: 0.8482327, b: 0.103773475, a: 1}
@@ -1094,9 +1094,9 @@ MonoBehaviour:
   grabHitboxOffsetY: 0
   battleInfo: 0
   trigger: {fileID: 0}
-  rollSpeed: 150
+  rollSpeed: 120
   rollCoolDown: 0.2
-  rollDuration: 0.2
+  rollDuration: 0.15
   rollInvincibleDuration: 0.2
   InvincibleBox: {fileID: 3763788250579995280}
   HitBox: {fileID: 4934100098350852}
@@ -1517,11 +1517,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2785642529971634628, guid: 29aa44ef5bbd1644d852c06272ec96f4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2785642529971634628, guid: 29aa44ef5bbd1644d852c06272ec96f4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2785642529971634628, guid: 29aa44ef5bbd1644d852c06272ec96f4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1592,11 +1592,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3002809529043241554, guid: 5228a8d48f81f4e41b3dc755c6a29156, type: 3}
       propertyPath: m_LocalScale.x
-      value: 6
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3002809529043241554, guid: 5228a8d48f81f4e41b3dc755c6a29156, type: 3}
       propertyPath: m_LocalScale.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3002809529043241554, guid: 5228a8d48f81f4e41b3dc755c6a29156, type: 3}
       propertyPath: m_LocalPosition.x
