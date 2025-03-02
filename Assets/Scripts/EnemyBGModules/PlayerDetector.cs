@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerDetector : MonoBehaviour
 {
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private LayerMask playerAndGroundLayer;    
     [SerializeField] private Vector2 centerOffset;
     [SerializeField] private Vector2 detectionBoxSize;
     [SerializeField] private bool showGizmo;
@@ -17,7 +18,10 @@ public class PlayerDetector : MonoBehaviour
             Player player = hit.GetComponent<Player>();
             if (player != null)
             {
-                return player;
+                Ray2D ray = new Ray2D(transform.position, player.transform.position - transform.position);
+                RaycastHit2D hitInfo = Physics2D.Raycast(ray.origin, ray.direction, Vector2.Distance(transform.position, player.transform.position), playerAndGroundLayer);
+                if (hitInfo.collider == player.GetComponent<Collider2D>())
+                    return player;
             }
         }
         return null;

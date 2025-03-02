@@ -39,13 +39,7 @@ public partial class SplineAttackAction : Action
     
     [Tooltip("attackController is the controller attached to attackBox component, might have different controller for different size attack check, if this attack has no damage check, like a precast, do not pass in any controller")]
     [SerializeReference] public BlackboardVariable<LancerWeaponController> attackContrl;
-    
-    [Tooltip("grabController is the controller attached to grabBox component")]
-    [SerializeReference] public BlackboardVariable<EnemyGrabController> grabContrl;
-    
-    [Tooltip("parry counter from blackboard should be dragged here")]
-    [SerializeReference] public BlackboardVariable<int> parryCounter;
-    
+   
     [Tooltip("max parry before can be grabbed, should be in the blackboard")]
     [SerializeReference] public BlackboardVariable<int> maxParry;
 
@@ -95,12 +89,7 @@ public partial class SplineAttackAction : Action
                         break;
 
                     case 2:
-                        parryCounter.Value++;
                         knockBackContrl.Value.KnockBack();
-                        if (parryCounter.Value >= maxParry.Value)
-                        {
-                            grabContrl.Value.gameObject.SetActive(true);
-                        }
                         isAttackEffective = false;
                         if (attackMode == ATTACKMODE.MULTIPLE)
                         {

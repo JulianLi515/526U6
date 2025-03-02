@@ -23,4 +23,9 @@ public class LancerWeaponController : EnemyHitBoxBase
         base.playerDestroy(_param);
         
     }
+    public void OnDisable()
+    {
+        Debug.Log(gameObject.name + "Disabled");
+    }
+
 }
